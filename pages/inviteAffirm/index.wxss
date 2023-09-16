@@ -1,0 +1,30 @@
+/* pages/inviteAffirm/index.wxss */
+.inviteAffirm{
+  background-color: #fff;
+  height: 100vh;
+}
+.logo{
+  padding-top: 180rpx;
+  margin:0 auto 0;
+  height: 320rpx;
+  width: 320rpx;
+}
+.logo image{
+  height: 320rpx;
+  width: 320rpx;
+}
+.info-btn{
+  margin:400rpx auto 0;
+  height: 100rpx;
+  width: 80%;
+}
+.info-btn .btn-normal{
+  height: 100rpx;
+  width: 100%;
+  text-align: center;
+  background-color: #06BD01;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 100rpx;
+  border-radius: 16rpx;
+}

@@ -1,0 +1,155 @@
+<view class="container">
+  <!-- tab栏 -->
+  <view class="header f-28 col-3">
+    <view catchtap="bindHeaderTap" class="{{dataType==='all'?'active':''}}" data-type="all">
+      <text>全部<block wx:if="{{list.total > 0 && dataType==='all'}}"> ({{list.total}})</block></text>
+    </view>
+    <view bindtap="bindHeaderTap" class="{{dataType==='payment'?'active':''}}" data-type="payment">
+      <text>待付款<block wx:if="{{list.total > 0 && dataType==='payment'}}"> ({{list.total}})</block></text>
+    </view>
+    <view bindtap="bindHeaderTap" class="{{dataType==='delivery'?'active':''}}" data-type="delivery">
+      <text>待发货<block wx:if="{{list.total > 0 && dataType==='delivery'}}"> ({{list.total}})</block></text>
+    </view>
+    <view bindtap="bindHeaderTap" class="{{dataType==='completed'?'active':''}}" data-type="completed">
+      <text>已完成<block wx:if="{{list.total > 0 && dataType==='completed'}}"> ({{list.total}})</block></text>
+    </view>
+  </view>
+  <!-- 订单列表 -->
+  <view class="goods-detail-box">
+    <scroll-view bindscrolltolower="bindDownLoad" scroll-y style="height: {{scrollHeight}}px; width: 750rpx;margin-top:88rpx;">
+      <view class="wrapper" wx:if="{{list.data.length > 0}}">
+        <!-- <view wx:if="{{list.length}}"> -->
+        <view class="m-top20" wx:for="{{list.data}}" wx:key="this">
+          <view class="order-box b-f">
+            <view class="order-header dis-flex">
+              <view class="flex-box t-l">
+                <text class="title">卡号: {{item.oilcard_number}}</text>
+              </view>
+              <view class="flex-box t-r">
+                <text class="cont">{{item.state_text}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="order-box b-f">
+            <view class="order-cont dis-flex">
+              <view class="order-num">
+                <text>订单号：{{item.order_no}}</text>
+              </view>
+              <view class="order-time">
+                <text>{{item.create_time}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="order-box order-img_list">
+            <view class="order-shop">
+              <view class="order-list-box">
+                  <image class="oilcard-icon" src="../../images/zhongshihualogo.jpg" mode="scaleToFill" wx:if="{{ item.oilcard_type.value == '1' }}" ></image>
+                  <image class="oilcard-icon" src="../../images/zhongshiyoulogo.jpg" wx:if="{{ item.oilcard_type.value == 2 }}"></image>
+                  <view class="item-title f-30">
+                    {{ item.oilcard_type.name}}：{{ item.oilcard_remark }} \n
+                    手机号：{{ item.mobile }}
+                  </view>
+              </view>
+            </view>
+          </view>
+          <view class="order-box b-f">
+            <view class="order-btn dis-flex">
+              <view class="order-left">
+                <view class="text">
+                  <text>合计：</text>
+                  <text class="col-m">￥{{item.pay_price}}</text>
+                </view>
+              </view>
+              <view class="order-right">
+                <view wx:if="{{ item.order_status.value==20 }}">
+                  <view catchtap="deleteOrder" class="btn-default" data-order_id="{{item.order_id}}">删除</view>
+                </view>
+                <view class="btn-group dis-flex" wx:if="{{ item.order_status.value != 20 }}">
+                  <!-- 未支付取消订单 -->
+                  <view wx:if="{{ item.pay_status.value==10 }}">
+                    <view catchtap="cancelOrder" class="btn-default" data-order_id="{{item.order_id}}">取消</view>
+                  </view>
+                  <!-- 已支付取消订单 -->
+                  <block wx:if="{{ item.order_status.value!=21 }}">
+                    <view wx:if="{{ item.pay_status.value==20 && item.delivery_status.value==10 }}">
+                      <view catchtap="cancelOrder" class="btn-default" data-order_id="{{item.order_id}}">申请取消</view>
+                    </view>
+                    <!-- 订单核销码 -->
+                    <view wx:if="{{ item.pay_status.value==20 && item.delivery_type.value == DeliveryTypeEnum.EXTRACT.value && item.delivery_status.value == 10 }}">
+                      <view catchtap="onExtractQRCode" class="btn-main" data-order_id="{{item.order_id}}">
+                        <text class="iconfont icon-qr-extract"></text>
+                        <text class="m-l-10">核销码</text>
+                      </view>
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view class="f-28 col-8">取消申请中</view>
+                  </block>
+                  <!-- 订单付款 -->
+                  <view wx:if="{{item.pay_status.value==10}}">
+                    <view catchtap="onPayOrder" class="btn-main" data-order_id="{{item.order_id}}">付款</view>
+                  </view>
+                  <!-- 确认收货 -->
+                  <view wx:if="{{item.delivery_status.value==20 && item.receipt_status.value == 10}}">
+                    <view catchtap="receipt" class="btn-main" data-order_id="{{item.order_id}}">确认收货</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{ no_more }}" class="no-more f-30">亲, 没有更多了</view>
+      <view wx:if="{{ !isLoading && !list.data.length }}">
+        <view class="jz-notcont">
+          <text class="iconfont icon-wushuju"></text>
+          <text class="cont">亲，您还没有订单信息哦！    </text>
+          <navigator url="../oilcard/index" class="btn-default btn-recharge">去充值</navigator>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 支付方式弹窗 -->
+  <zan-popup show="{{ showPayPopup }}" bindclose="onTogglePayPopup">
+    <view class="pop-orderPay pop-example__container">
+      <view class="pop-title">
+        <text class="f-30">请选择支付方式</text>
+      </view>
+      <view class="pop-content">
+        <view class="pay-method">
+          <form bindsubmit="onSelectPayType" data-value="{{ PayTypeEnum.WECHAT.value }}" report-submit="true">
+            <button formType="submit" class="btn-normal">
+              <view class="pay-item dis-flex flex-x-between">
+                <view class="item-left dis-flex flex-y-center">
+                  <view class="item-left_icon wechat">
+                    <text class="iconfont icon-weixinzhifu"></text>
+                  </view>
+                  <view class="item-left_text">
+                    <text>{{ PayTypeEnum.WECHAT.name }}</text>
+                  </view>
+                </view>
+              </view>
+            </button>
+          </form>
+          <form bindsubmit="onSelectPayType" data-value="{{ PayTypeEnum.BALANCE.value }}" report-submit="true">
+            <button formType="submit" class="btn-normal">
+              <view class="pay-item dis-flex flex-x-between">
+                <view class="item-left dis-flex flex-y-center">
+                  <view class="item-left_icon balance">
+                    <text class="iconfont icon-qiandai"></text>
+                  </view>
+                  <view class="item-left_text">
+                    <text>{{ PayTypeEnum.BALANCE.name }}</text>
+                  </view>
+                </view>
+              </view>
+            </button>
+          </form>
+        </view>
+      </view>
+    </view>
+  </zan-popup>
+
+</view>

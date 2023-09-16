@@ -1,0 +1,49 @@
+<view class="container b-f">
+<view class="widget-body b-f dis-flex flex-dir-column flex-y-center">
+  <form bindsubmit="onFormSubmit" report-submit="true">
+    <view class="widget widget__capital m-top20 b-f dis-flex flex-dir-column">
+      <view class="capital__item dis-flex flex-x-between flex-y-center" wx:if="{{user_mobile != ''}}">
+        <view class="item__left f-32">手机号码：</view>
+        <view class="item__right flex-box col-7">
+          {{ user_mobile }}
+        </view>
+      </view>
+      <view class="capital__item dis-flex flex-y-center">
+        <view class="item__left f-32">油卡类型：</view>
+        <view class="item__right flex-box">
+          <radio-group class="radio-group" bindchange="changeOilcardType">
+            <label class="radio" wx:for="{{oilcard_type_items}}">
+              <radio name="oilcard_type" value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <view class="capital__item dis-flex flex-y-center">
+        <view class="item__left f-32">油卡号码：</view>
+        <view class="item__right flex-box">
+          <input name="oilcard_number" placeholder="请输入油卡卡号" value="{{oilcard_number}}"></input>
+        </view>
+      </view>
+      <view class="capital__item dis-flex flex-y-center">
+        <view class="item__left f-32">油卡备注：</view>
+        <view class="item__right flex-box">
+          <input name="remark" placeholder="请输入备注，例如：个人单卡（卡主）" value="{{remark}}"></input>
+        </view>
+      </view>
+    </view>
+    <!-- 提交 -->
+    <view class="form-submit dis-flex flex-x-center">
+      <input name="oilcard_id" hidden value="{{oilcard_id}}"></input>
+      <button class="btn-del" wx:if="{{oilcard_id > 0}}" bindtap="deleteOilcard" data-oilcard_id="{{oilcard_id}}" disabled="{{ deldisabled }}">删除</button>
+
+      <button formType="submit" disabled="{{ disabled }}">{{sumbit_btn_name}}</button>
+    </view>
+    <view class="capital__lowest m-top20 f-32 col-7 t-l">
+      <view>注意事项：</view>
+      <text>
+        {{tips[oilcard_type]}}
+      </text>
+    </view>
+  </form>
+</view>
+</view>

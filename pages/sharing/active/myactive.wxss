@@ -1,0 +1,333 @@
+.container {
+  /* font-size: 28rpx; */
+}
+
+.header {
+  width: 100%;
+  height: 88rpx;
+  border-bottom: 1rpx solid #e4e4e4;
+  display: flex;
+  background: #fff;
+  line-height: 88rpx;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.header view {
+  flex: 1;
+  text-align: center;
+  padding: 0 15rpx;
+}
+
+.header view text {
+  display: block;
+}
+
+.header view.active {
+  color: #fd4a5f;
+}
+
+.header view.active text {
+  border-bottom: 1px solid #fd4a5f;
+}
+
+.floatr {
+  float: right;
+}
+/* 商品列表 */
+
+.goods-detail-box {
+  font-size: 28rpx;
+}
+
+.order-box {
+  padding: 0 25rpx;
+}
+
+.order-header {
+  padding: 18rpx 0;
+}
+
+.order-cont {
+  padding: 15rpx 0;
+  justify-content: space-between;
+}
+
+.order-cont .order-num text, .order-cont .order-time text {
+  color: #777;
+  font-size: 26rpx;
+}
+
+.order-shop {
+  padding: 16rpx 0 16rpx 0;
+}
+
+.order-shop-left, .order-shop-left image {
+  width: 160rpx;
+  height: 160rpx;
+  /* border: 1rpx solid #e4e4e4; */
+  margin-right: 15rpx;
+  display: inline-block;
+  background: #fff;
+}
+
+.order-shop .num {
+  float: right;
+}
+
+.order-btn {
+  padding: 18rpx 0 18rpx 0;
+  z-index: 9;
+}
+
+.order-btn .order-left text, .order-btn .order-left .text {
+  font-size: 29rpx;
+}
+
+.order-btn .order-left .text {
+  color: #888;
+}
+
+.order-btn .order-right .btn-group {
+  margin-bottom: -10rpx;
+}
+
+.order-btn .order-right .btn-group .btn-group-item {
+  margin: 0 0 10rpx 10rpx;
+  float: right;
+}
+
+.order-btn .order-right .btn-group .btn-group-item .btn-default {
+  border-radius: 4px;
+  border: 1rpx solid #ccc;
+  padding: 6rpx 20rpx;
+  font-size: 28rpx;
+  color: #555;
+}
+
+.order-btn .order-right .btn-group .btn-group-item .btn-main {
+  border-radius: 4px;
+  border: 1rpx solid #fd4a5f;
+  padding: 6rpx 20rpx;
+  font-size: 28rpx;
+  color: #fd4a5f;
+}
+
+.order-list-box .left {
+  flex: 4;
+  overflow: hidden;
+  position: relative;
+}
+
+.order-list-box .right {
+  flex: 1;
+}
+
+.goods-number {
+  font-size: 28rpx;
+  color: #777;
+}
+
+.user-orderJtou {
+  font-size: 24rpx;
+}
+
+.order-img_list {
+  background: #fff;
+  border-top: 1rpx solid #f8f8f8;
+  border-bottom: 1rpx solid #f8f8f8;
+}
+
+/* 商品详情 */
+
+.detail-goods {
+  padding: 18rpx;
+}
+
+.detail-goods .left .goods-image {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.detail-goods .right {
+  padding-left: 25rpx;
+}
+
+.detail-goods .right .goods-name {
+  color: #333;
+}
+
+.jz-notcont navigator {
+  background: #fd4a5f;
+  height: 30px;
+  line-height: 30px;
+  font-size: 28rpx;
+  width: 200rpx;
+  margin: 0 auto;
+  border-radius: 5px;
+  text-align: center;
+  color: #f8f8f8;
+  margin-top: 25rpx;
+}
+
+/* 弹出层 */
+
+.pop-example__container {
+  background: #fff;
+  padding: 30rpx 40rpx;
+  border-radius: 10rpx;
+  min-width: 460rpx;
+}
+
+.pop-example__container .pop-title {
+  text-align: center;
+}
+
+.pop-content {
+  margin-top: 30rpx;
+}
+
+/* 弹出层：核销码 */
+
+.pop-qrcode .pop-content image {
+  display: block;
+  width: 460rpx;
+  height: 460rpx;
+}
+
+/* 弹出层：支付方式 */
+
+.pop-orderPay .pop-title {
+  text-align: left;
+}
+
+.pay-method .pay-item {
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  /* border-bottom: 1rpx solid rgb(248, 248, 248); */
+}
+
+.pay-method .pay-item .item-left_icon {
+  margin-right: 20rpx;
+  font-size: 32rpx;
+}
+
+.pay-method .pay-item .item-left_icon.wechat {
+  color: #00c800;
+}
+
+.pay-method .pay-item .item-left_icon.balance {
+  color: #ff9700;
+}
+
+/* common.wxss */
+/* @import "/utils/common.wxss"; */
+
+/* 商品组 */
+
+.diy-sharingGoods {
+  padding: 20rpx;
+}
+
+.goods-item {
+  height: 320rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.goods-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 商品图片 */
+
+.goods-item_left {
+  display: flex;
+  width: 35%;
+  align-items: center;
+}
+
+.goods-item_left .image {
+  display: block;
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.goods-item_right {
+  position: relative;
+  width: 60%;
+}
+
+/* 商品名称 */
+
+.goods-item_right .goods-item_title {
+  height: 72rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  line-height: 1.3;
+  color: #333;
+}
+
+.goods-item_desc {
+  margin-top: 16rpx;
+}
+
+/* 商品卖点 */
+
+.desc-selling_point {
+  width: 400rpx;
+  /* height: 40rpx; */
+  font-size: 24rpx;
+  line-height: 1.4;
+  color: #ff495e;
+}
+
+/* 拼团信息 */
+
+.desc-situation {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.3;
+  color: rgb(240, 60, 60);
+}
+
+.desc-situation .people {
+  margin: 0 12rpx;
+}
+
+/* 商品价格 */
+
+.desc_footer {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+}
+
+.desc_footer .price_x {
+  margin-right: 16rpx;
+  color: rgb(240, 60, 60);
+  font-size: 28rpx;
+}
+
+.desc_footer .price_y {
+  text-decoration: line-through;
+}
+
+/* 去拼团按钮 */
+
+.btn-settlement {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0 28rpx;
+  border-radius: 40rpx;
+  background: linear-gradient(to right, rgb(235, 53, 107) 0%, rgb(240, 60, 60) 100%);
+  box-shadow: 0 4rpx 20rpx -4rpx rgb(235, 53, 107);
+  font-size: 28rpx;
+  line-height: 54rpx;
+  text-align: center;
+  color: #fff;
+}

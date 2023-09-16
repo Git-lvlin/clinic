@@ -1,0 +1,23 @@
+<!--pages/invite.wxml-->
+<view class="invite">
+  <view class="content-bg" style="background-color:{{userHeaderBGC}}">
+    <view class="content-bg_text">邀请好友注册，邀请越多，红包越多</view>
+  </view>
+  <view class="info">
+    <view class="info_title">请确认您的邀请人</view>
+    <view class="info_icon">
+      <image src="{{info.avatar}}"></image>
+    </view>
+    <view class="info_name">{{info.nickname}}</view>
+    <view class="info-btn">
+      <button class="btn-normal" lang="zh_CN" openType="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="background-color:{{userHeaderBGC}}">下一步</button>
+    </view>
+    <view class="info_trip">
+      <view class="info_trip_icon"></view>
+      <view class="info_trip_text">友情提示：请确认您的邀请人，注册后不可以更改哦</view>
+    </view>
+    <view class="info_goto" bindtap="onTargetMenus">
+      已有帐号，直接登录
+    </view>
+  </view>
+</view>

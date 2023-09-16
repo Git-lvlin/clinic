@@ -1,0 +1,127 @@
+<view class="container b-f">
+
+<!-- 头部背景图 -->
+<view class="dealer-bg">
+  <image mode="widthFix" src="{{ background }}"></image>
+</view>
+
+<!-- widget -->
+<view class="widget-body b-f dis-flex flex-dir-column flex-y-center">
+  <!-- 用户信息 -->
+  <view class="widget widget__base m-top20 b-f dis-flex flex-dir-column">
+    <view class="base__user f-30">
+      <!-- 用户头像 -->
+      <view class="user-avatar">
+        <image src="{{ user.avatarUrl }}"></image>
+      </view>
+      <view class="user-nickName f-32">{{ user.nickName }}</view>
+      <view class="my_inviteCode f-24">
+        我的邀请码:{{invite_code}}
+
+        <text class="order-navbar__icon iconfont icon-form copyInviteCode" catchtap="copyInviteCode"></text>
+        <!-- <image class="copyInviteCode"  catchtap="copyInviteCode"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAICAYAAAArzdW1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABmSURBVChTY+Sffl2B6R/zfEZGRgEGLOAv459ARqEpNxMYmBgF3mWpTYCKw4Hg1JsNTAz/LzBB+XgBnRUxCk+9EfCPgSmfgZHxAVQMDhgZGAz+/mUoBNIMDKBgYPjLhDUIPuaoXwAATTAZN8VF+TEAAAAASUVORK5CYII="></image> -->
+      </view>
+    </view>
+    <view class="base__capital dis-flex flex-dir-column">
+      <!-- 佣金卡片 -->
+      <view class="capital-card dis-flex">
+        <view class="card-left flex-box dis-flex flex-dir-column flex-x-around">
+          <view class="f-28 col-f">
+            <text space="ensp">{{ words.index.words.money.value }} {{ user.money }} 元</text>
+          </view>
+          <view class="f-28 col-f">
+            <text space="ensp">{{ words.index.words.freeze_money.value }} {{ user.freeze_money }} 元</text>
+          </view>
+        </view>
+        <view class="card-right flex-box dis-flex flex-x-end flex-y-center">
+          <view class="withdraw-btn f-26" catchtap="navigationToWithdraw">{{ words.index.words.withdraw.value }}</view>
+        </view>
+      </view>
+      <!-- 已提现金额 -->
+      <view class="capital-already clear">
+        <view class="already-left f-28 fl">{{ words.index.words.total_money.value }}</view>
+        <view class="already-right f-28 fr">{{ user.total_money }}元</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作列表 -->
+  <view class="widget widget__operat clear b-f">
+    <view class="operat__item">
+      <navigator hover-class="none" url="../withdraw/list/list">
+        <view class="item__icon">
+          <text class="iconfont icon-zhangben" style="color:#F9BA21;"></text>
+        </view>
+        <view class="item__text f-28">{{ words.withdraw_list.title.value }}</view>
+      </navigator>
+    </view>
+    <view class="operat__item">
+      <navigator hover-class="none" url="../order/order">
+        <view class="item__icon">
+          <text class="iconfont icon-dingdan" style="color:#FF7575;"></text>
+        </view>
+        <view class="item__text f-28">{{ words.order.title.value }}</view>
+      </navigator>
+    </view>
+    <view class="operat__item">
+      <navigator hover-class="none" url="../team/team">
+        <view class="item__icon">
+          <text class="iconfont icon-tuandui" style="color:#59C78E;"></text>
+        </view>
+        <view class="item__text f-28">{{ words.team.title.value }}</view>
+      </navigator>
+    </view>
+    <view wx:if="{{ basic.is_open_qrcode == 1 }}" class="operat__item">
+      <navigator hover-class="none" url="../qrcode/qrcode">
+        <view class="item__icon">
+          <text class="iconfont icon-erweima" style="color:#5fa5ff;"></text>
+        </view>
+        <view class="item__text f-28">{{ words.qrcode.title.value }}</view>
+      </navigator>
+    </view>
+    <view class="operat__item" catchtap="showRuleDetailClick">
+        <view class="item__icon">
+          <text class="iconfont icon-fenxiang" style="color:#59C78E;"></text>
+        </view>
+        <view class="item__text f-28">立即推广</view>
+    </view>
+  </view>
+  <!-- 我的团长 -->
+  <view class="myLeader">
+    <view class="myLeader_title f-28">我的推荐人</view>
+    <view wx:if="{{inviter}}" class="myLeader_info f-28">
+      <image src="{{inviter.avatarUrl}}"></image>
+      <view>
+        {{inviter.nickName}}
+      </view>
+    </view>
+    <view wx:if="{{!inviter}}" class="noLeader" catchtap="setInvite">
+      补填邀请码
+    </view>
+  </view>
+</view>
+</view>
+
+<pop-manager show="{{ show }}" wx:if="{{show}}" type="center">
+  <view class="setInviteCode">
+    <view class="setInviteCode_title">补填邀请码</view>
+    <view class="setInviteCode_input">邀请码
+      <input class="weui-input" auto-focus placeholder="请输入邀请码" type='text' bindinput="inputChange" value="{{setInviteCode}}"/>
+    </view>
+    <view class="setInviteCode-btn" style="margin-top:0.7em;">
+      <button catchtap="setInviteFalse">取消</button>
+      <button catchtap="setInviteTrue">确认</button>
+    </view>
+  </view>
+</pop-manager>
+
+<pop-manager show="{{ showRuleDetail }}" wx:if="{{showRuleDetail}}" actions="{{ share.actions }}" type="center">
+  <view class="setInviteCode f-28">
+    <view class="setInviteCode_title">{{ basic.rule_title }}</view>
+    <view class="setInviteCode_input" style="white-space:pre-wrap">{{ basic.rule_detail }}</view>
+    <view class="setInviteCode-btn" style="margin-top:0.7em;">
+      <button catchtap="showRuleDetailCancel">取消</button>
+      <button open-type="share">分享给好友</button>
+    </view>
+  </view>
+</pop-manager>

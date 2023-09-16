@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="wechatapp">
+    <view class="header">
+      <open-data class="" type="userAvatarUrl"></open-data>
+    </view>
+      <open-data class="" type="userNickName"></open-data>
+  </view>
+  <view class="auth-title">申请获取以下权限</view>
+
+  <view class="auth-subtitle" style="white-space:pre-wrap">获得你微信绑定的手机号\n获得你的公开信息（昵称、头像等）</view>
+
+  <view class="login-btn">
+    <button class="btn-normal" lang="zh_CN" openType="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信授权登录</button>
+  </view>
+
+  <pop-manager show="{{ show }}" type="center">
+    <view class="getUserInfoPop">
+      <view style="text-align:center;white-space:pre-wrap">获得你的公开信息\n（昵称、头像等）</view>
+      <view class="login-btn" style="margin-top:0.7em;">
+        <!-- 旧版微信登录（弃用） -->
+        <!-- <button class="btn-normal" openType="getUserInfo" lang="zh_CN" bindgetuserinfo="getUserInfo">授权登录</button> -->
+        <!-- 新版微信登录 -->
+        <button class="btn-normal" catchtap="getUserProfile">授权登录</button>
+      </view>
+
+    </view>
+
+  </pop-manager>
+  <view class="no-login-btn">
+    <button class="btn-normal" catchtap="onNotLogin">暂不登录</button>
+  </view>
+</view>

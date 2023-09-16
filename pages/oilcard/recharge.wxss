@@ -1,0 +1,147 @@
+page {
+  background: #fff;
+}
+
+.c-violet {
+  color: #786cff;
+}
+
+.col-bb {
+  color: #bbb;
+}
+
+.dealer-bg image {
+  width: 100%;
+}
+
+.widget-body .widget {
+  width: 700rpx;
+  box-sizing: border-box;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.5);
+  border-radius: 12rpx;
+}
+
+/* 提现金额 */
+
+.widget__capital {
+  padding: 10rpx 0;
+  /* margin-top: -60rpx; */
+}
+
+.widget__capital .capital__item {
+  height: auto;
+  padding: 10rpx 35rpx;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+  box-sizing: border-box;
+}
+
+.widget__capital .capital__item:last-child {
+  border-bottom: none;
+}
+
+.widget__capital .capital__item .item__left {
+  margin-right: 20rpx;
+}
+
+.capital__lowest {
+  width: 700rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 提现方式 */
+
+.widget__form {
+  padding: 10rpx 0 20rpx 0;
+}
+
+.widget__form .form__title {
+  padding: 16rpx 35rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+}
+
+.widget__form .form__box {
+  padding: 20rpx 35rpx;
+}
+
+.widget__form .form__field {
+  height: 80rpx;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+
+.widget__form .form__field .radio__icon {
+  font-size: 38rpx;
+  margin-right: 12rpx;
+}
+
+.widget__form .form__field .field-input input {
+  background-color: #f9f9f9;
+  height: 70rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+/* 提交 */
+
+.form-submit {
+  margin-top: 40rpx;
+}
+
+.form-submit button {
+  font-size: 30rpx;
+  background: #1aad19;
+  border: 1rpx solid #1aad19;
+  color: white;
+  border-radius: 50rpx;
+  padding: 0 120rpx;
+}
+
+.form-submit button[disabled] {
+  background: #8e84fc;
+  border-color: #8e84fc;
+  color: white;
+}
+
+radio {
+  transform:scale(0.7);
+}
+.radio {
+  line-height: 28rpx;
+}
+.btn-del {
+  background: #ccc !important;
+  border-color: #ccc !important;
+}
+
+.money {
+  border: 1rpx solid #CCC;
+  border-radius: 20rpx;
+  padding: 10rpx 10rpx;
+  width:auto; height: auto;
+  float:left !important;
+  margin: 10rpx 20rpx;
+}
+
+/* 支付方式 */
+
+.pay-method .pay-item {
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid rgb(248, 248, 248);
+}
+
+.pay-method .pay-item .item-left_icon {
+  margin-right: 20rpx;
+  font-size: 32rpx;
+}
+
+.pay-method .pay-item .item-left_icon.wechat {
+  color: #00c800;
+}
+
+.pay-method .pay-item .item-left_icon.balance {
+  color: #ff9700;
+}
