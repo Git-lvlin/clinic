@@ -37,7 +37,6 @@ Component({
       var goods_id = e.currentTarget.dataset.goods_id
       var goods_num = 1
       var spec_sku_id = e.currentTarget.dataset.spec_sku_id
-      console.log('addCard', goods_id, spec_sku_id)
       // return
       App._post_form('cart/add', {
         goods_id: goods_id,

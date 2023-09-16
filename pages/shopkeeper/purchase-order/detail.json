@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订购详细",
+  "usingComponents": {
+    "zan-popup": "/components/popup/index",
+    "shortcut": "/components/shortcut/shortcut"
+  }
+}

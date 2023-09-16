@@ -1,7 +1,7 @@
 <!--pages/invite.wxml-->
 <view class="invite">
   <view class="content-bg" style="background-color:{{userHeaderBGC}}">
-    <view class="content-bg_text">邀请好友注册，邀请越多，红包越多</view>
+    <view class="content-bg_text">邀请好友注册，邀请越多，奖励越多</view>
   </view>
   <view class="info">
     <view class="info_title">请确认您的邀请人</view>

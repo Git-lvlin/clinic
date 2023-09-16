@@ -19,13 +19,13 @@
       </form>
     </view>
     <view class="space-lower_item item-lable dis-flex flex-x-around">
-      <!--<form bindsubmit="onTargetRechargeOrder" report-submit="true">
+      <form bindsubmit="onTargetRechargeOrder" report-submit="true">
         <button formType="submit" class="btn-normal">
           <view class="lable-text">
             <text>充值记录</text>
           </view>
         </button>
-      </form>-->
+      </form>
       <form bindsubmit="onTargetBalanceLog" report-submit="true">
         <button formType="submit" class="btn-normal">
           <view class="lable-text">

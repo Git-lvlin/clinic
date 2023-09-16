@@ -1,0 +1,35 @@
+/* pages/sale-men/index.wxss */
+
+.header {
+  width: 100%;
+  height: 88rpx;
+  border-bottom: 1rpx solid #e4e4e4;
+  display: flex;
+  background: #fff;
+  line-height: 88rpx;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.header view {
+  flex: 1;
+  text-align: center;
+  padding: 0 15rpx;
+}
+
+.header view text {
+  display: block;
+}
+
+.header view.active {
+  color: #fd4a5f;
+}
+
+.header view.active text {
+  border-bottom: 1px solid #fd4a5f;
+}
+
+.weui-panel__bd {
+  padding-top: 98rpx;
+}

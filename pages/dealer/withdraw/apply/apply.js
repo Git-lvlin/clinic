@@ -157,5 +157,4 @@ Page({
       payment: e.currentTarget.dataset.payment
     });
   },
-
 })

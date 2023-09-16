@@ -1,0 +1,23 @@
+/* pages/shopkeeper/index.wxss */
+
+.weui-grid  {
+  width: 33%;
+}
+
+.shopkeeper__enormous-window {
+  height: 400rpx;
+  padding: 0 20rpx;
+  background-color: #eee;
+}
+
+.shopkeeper__profits-value {
+  color: orange
+}
+
+.shopkeeper__applied {
+  color: #999;
+}
+
+.shopkeeper__profits {
+  color: #999;
+}

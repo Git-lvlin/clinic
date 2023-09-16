@@ -1,0 +1,61 @@
+<!--pages/user/cash-pledge/reback-pledge.wxml-->
+<view class="reback-pledge">
+	<view class="weui-form">
+		<view class="weui-form__control-area">
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells weui-cells_form">
+					<view class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd"><label class="weui-label">退桶门店</label></view>
+						<view class="weui-cell__bd">
+							<navigator url="{{'../../_select/extract_point/index?selected_id='+selectedShopId}}">{{shopName}}
+							</navigator>
+						</view>
+					</view>
+
+					<view class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd"><label class="weui-label">账户类型</label></view>
+						<view class="weui-cell__bd">
+							<picker bindchange="handleAccountChange" value="{{accountIndex}}" range="{{accounts}}">
+								<text class="weui-select">{{accounts[accountIndex]}}</text>
+							</picker>
+						</view>
+					</view>
+
+					<block wx:if="{{formData.refund_type === 20}}">
+						<view class="weui-cell weui-cell_active">
+							<view class="weui-cell__hd"><label class="weui-label">姓名</label></view>
+							<view class="weui-cell__bd">
+								<input class="weui-input"
+									bindblur="handleAccountInput"
+									placeholder="开通支付宝的真实姓名"
+									placeholder-class="weui-input__placeholder" 
+									model:value="{{formData.alipay_name}}"/>
+							</view>
+						</view>
+
+						<view class="weui-cell weui-cell_active">
+							<view class="weui-cell__hd"><label class="weui-label">账号</label></view>
+							<view class="weui-cell__bd">
+								<input class="weui-input" 
+								type="number" 
+								placeholder="填写账号信息"
+								bindblur="handleAccountNumberInput"
+									placeholder-class="weui-input__placeholder" model:value="{{formData.alipay_account}}"/>
+							</view>
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+
+		<view class="weui-form__opr-area">
+			<a class="weui-btn weui-btn_primary" bindtap="toApplyReturnCanBucket">提交</a>
+		</view>
+	</view>
+
+	<view class="reback__step-list">
+		<view>第1步：选择一家门店去退桶</view>
+		<view>第2步：水店确认收桶后平台审核</view>
+		<view>第2步：通过后将在3天内打款到上述账户</view>
+	</view>
+</view>

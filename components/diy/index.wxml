@@ -7,12 +7,15 @@
 
   <!-- banner轮播 -->
   <block wx:if="{{item.type === 'banner'}}">
-    <diy-banner itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" params="{{ item.params }}" dataList="{{ item.data }}"></diy-banner>
+    <diy-banner itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" params="{{ item.params }}"
+      dataList="{{ item.data }}"></diy-banner>
   </block>
+
 
   <!-- 单图组 -->
   <block wx:if="{{item.type === 'imageSingle'}}">
-    <diy-imageSingle itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}"></diy-imageSingle>
+    <diy-imageSingle itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}">
+    </diy-imageSingle>
   </block>
 
   <!-- 视频组 -->
@@ -27,7 +30,8 @@
 
   <!-- 头条快报 -->
   <block wx:if="{{item.type === 'special'}}">
-    <diy-special itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" params="{{ item.params }}" dataList="{{ item.data }}"></diy-special>
+    <diy-special itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" params="{{ item.params }}"
+      dataList="{{ item.data }}"></diy-special>
   </block>
 
   <!-- 公告组 -->
@@ -77,12 +81,14 @@
 
   <!-- 拼团商品 -->
   <block wx:if="{{item.type === 'sharingGoods'}}">
-    <diy-sharingGoods itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}"></diy-sharingGoods>
+    <diy-sharingGoods itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}">
+    </diy-sharingGoods>
   </block>
 
   <!-- 砍价商品 -->
   <block wx:if="{{item.type === 'bargainGoods'}}">
-    <diy-bargainGoods itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}"></diy-bargainGoods>
+    <diy-bargainGoods itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}">
+    </diy-bargainGoods>
   </block>
 
   <!-- 秒杀商品 -->
@@ -97,7 +103,8 @@
 
   <!-- 关注公众号 -->
   <block wx:if="{{ item.type === 'officialAccount' }}">
-    <diy-officialAccount itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}"></diy-officialAccount>
+    <diy-officialAccount itemIndex="{{ itemIndex }}" itemStyle="{{ item.style }}" dataList="{{ item.data }}">
+    </diy-officialAccount>
   </block>
 
 </block>

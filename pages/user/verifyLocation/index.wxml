@@ -1,0 +1,18 @@
+<!--pages/user/spectLocation/index.wxml-->
+<view class="container">
+  <view class="verify__shop-picker">
+    <picker 
+      mode="selector" 
+      range-key="shop_name" 
+      range="{{shopList}}" 
+      value="{{selectedIndex}}" 
+      bindchange="handlePickerChange">{{selectedIndex > -1 ? shopList[selectedIndex].shop_name : '请选择要校准的门店'}}</picker>
+  </view>
+  <view class="verify__shop-locaton" >
+    <text bindtap="getUserLocation">{{coordinate.longitude ? coordinate.longitude+','+coordinate.latitude : '获取当前坐标'}}</text>
+  </view>
+
+  <view class="verify__sumit-btton">
+    <el-button class="weui-btn weui-btn_primary" bindtap="updateCoordinate">提交</el-button>
+  </view>
+</view>

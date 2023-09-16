@@ -54,9 +54,13 @@ page {
 .cate_style__11 .cate-item {
   float: left;
   padding: 25rpx;
-  width: 33.3333%;
+  width: 50%;
   text-align: center;
   box-sizing: border-box;
+}
+
+.cate_style__11 .cate-item navigator {
+  height: 153px;
 }
 
 .cate_style__11 .cate-item image {

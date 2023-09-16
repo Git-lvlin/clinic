@@ -372,7 +372,6 @@ Page({
             }
           },
           complete(res) {
-            console.log('complete');
             // wx.hideLoading();
           }
         })
@@ -459,7 +458,6 @@ Page({
       goods_sku_id: _this.data.goods_sku_id,
     }, result => {
       // success
-      console.log('success');
       // 创建成功，跳转到砍价任务详情
       wx.navigateTo({
         url: `../task/index?task_id=${result.data.task_id}`
@@ -469,7 +467,6 @@ Page({
       console.log('fail');
     }, () => {
       // complete
-      console.log('complete');
       wx.hideLoading();
       // 解除按钮禁用
       _this.data.disabled = false;

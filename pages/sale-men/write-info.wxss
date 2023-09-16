@@ -1,0 +1,24 @@
+/* pages/sale-men/write-info.wxss */
+.write-info {
+  padding: 20rpx;
+
+}
+
+textarea {
+  border: 1px solid #eee;
+  width: calc(100% - 40rpx);
+  background-color: #fff;
+  height: 400rpx;
+  padding: 20rpx;
+}
+
+label {
+  padding-bottom: 40px;
+  display: inline-block;
+  width: 100%;
+}
+
+label .label {
+  padding: 20rpx 0 30rpx;
+  display: inline-block;
+}

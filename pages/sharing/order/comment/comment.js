@@ -136,8 +136,6 @@ Page({
 
     // form提交执行函数
     let fromPostCall = function(formData) {
-      console.log('fromPostCall');
-      console.log(formData);
 
       App._post_form('sharing.comment/order', {
           order_id: _this.data.options.order_id,
@@ -197,7 +195,6 @@ Page({
               i++;
               if (imagesLength === i) {
                 // 所有文件上传完成
-                console.log('upload complete');
                 // 执行回调函数
                 callBack && callBack(formData);
               }

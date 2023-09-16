@@ -1,0 +1,55 @@
+/* pages/sale-men/task-flow.wxss */
+
+.task-flow {
+  padding-bottom: 180rpx;
+}
+
+.weui-gallery__img__wrp {
+  background-color: white;
+  display: inline-block;
+  border: 4px solid #eee;
+  margin-right: 10rpx;
+}
+
+.weui-gallery__img__wrp image { 
+  position: static;
+}
+
+.task-flow__block {
+  padding: 40rpx;
+  background-color: white;
+}
+
+.publish-date {
+  color: #999;
+  padding-bottom: 10rpx;
+}
+
+.task-flow__description {
+  padding-bottom: 20rpx;
+}
+
+.task-flow__task-description {
+  padding: 40rpx;
+  color: #999;
+}
+
+.task-flow__block {
+  margin-bottom: 20rpx;
+}
+
+.task-flow__write {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-color: #eee;
+  width: 100%;
+  color: #333333;
+  text-align: center;
+}
+
+.task-flow__location-info {
+  padding-top: 10rpx;
+  color: #3385e4;
+  font-size: 28rpx;
+}

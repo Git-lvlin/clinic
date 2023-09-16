@@ -1,0 +1,60 @@
+<!--pages/shopkeeper/returnBack/index.wxml-->
+<view class="return-back">
+  
+  <form bindsubmit="createMore">
+    <view class="weui-form">
+      <view class="weui-cells__group weui-cells__group_form">
+        <view class="weui-cells weui-cells_form">
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd"><label class="weui-label">店铺</label></view>
+            <view class="weui-cell__bd">
+              <picker name="shop_name" 
+              range="{{shopList}}" 
+              mode="selector" 
+              bindchange="handleShopChange"
+              value="{{index}}"
+                range-key="shop_name">{{shopList[index2].shop_name}}</picker>
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd"><label class="weui-label">品牌</label></view>
+            <view class="weui-cell__bd">
+              <picker name="category_id" 
+              range="{{rangeData}}" 
+              mode="selector" 
+              bindchange="handlePickerChange"
+              value="{{index}}"
+                range-key="category_name">{{rangeData[index].category_name}}</picker>
+            </view>
+          </view>
+
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <label class="weui-label">数量</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input name="amount" class="weui-input" value="{{amount}}" type="number" placeholder="请输入数量"
+                placeholder-class="weui-input__placeholder" />
+            </view>
+          </view>
+
+          <view class="button-sp-area">
+            <button  form-type="submit" class="weui-btn weui-btn_primary">新增</button>
+            <button  class="weui-btn weui-btn_default" bindtap="submitForm">提交</button>
+            
+            <button  class="weui-btn weui-btn_default">
+              <navigator url="/pages/driver/index">回桶记录</navigator>
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </form>
+
+  <view class="return-back__rows">
+    <view class="return-back__row" wx:for="{{items}}">
+      <text>品牌：{{item.category_name}}</text>
+      <text>数量：{{item.amount}}</text>
+    </view>
+  </view>
+</view>

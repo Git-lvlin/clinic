@@ -60,8 +60,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(e) {
-    let _this = this,
-      scene = App.getSceneData(e);
+    let _this = this;
+    let scene = App.getSceneData(e);
     // 商品id
     _this.data.goods_id = e.goods_id ? e.goods_id : scene.gid;
     // 获取商品信息
@@ -73,6 +73,8 @@ Page({
    */
   getGoodsDetail() {
     let _this = this;
+    let role = wx.getStorageSync('role');
+
     App._get('goods/detail', {
       goods_id: _this.data.goods_id
     }, (result) => {
@@ -435,7 +437,6 @@ Page({
             _this.onTogglePopup();
           },
           fail(err) {
-            console.log(err.errMsg);
             if (err.errMsg === 'saveImageToPhotosAlbum:fail auth deny') {
               wx.showToast({
                 title: "请允许访问相册后重试",
@@ -448,7 +449,6 @@ Page({
             }
           },
           complete(res) {
-            console.log('complete');
             // wx.hideLoading();
           }
         })

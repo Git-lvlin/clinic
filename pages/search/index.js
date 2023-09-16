@@ -54,9 +54,13 @@ Page({
       recentSearch.unshift(this.data.searchValue);
       wx.setStorageSync('recentSearch', recentSearch)
       // 跳转到商品列表页
-      wx.navigateTo({
-        url: '../category/list?search=' + this.data.searchValue,
+      // wx.switchTab({
+      //   url: "../category/list"
+      // })
+      wx.navigateBack({
+        delta: 0,
       })
+      
     }
   },
 
@@ -72,8 +76,12 @@ Page({
    * 跳转到最近搜索
    */
   goSearch: function(e) {
-    wx.navigateTo({
-      url: '../category/list?search=' + e.target.dataset.text,
+    // wx.navigateTo({
+    //   url: '../category/list?search=' + e.target.dataset.text,
+    // })
+
+    wx.navigateBack({
+      delta: 0,
     })
   },
 

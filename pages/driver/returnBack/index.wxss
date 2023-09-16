@@ -1,0 +1,25 @@
+/* pages/shopkeeper/returnBack/index.wxss */
+
+.button-sp-area {
+  padding: 40rpx 0;
+}
+.return-back__rows {
+  padding: 40rpx;
+  text-align: center;
+}
+.return-back__row {
+  padding: 10rpx 20rpx;
+  background-color: #fff;
+  border: 1px solid #eee;
+  display: inline-block;
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.return-back__row text {
+  padding-right: 40rpx;
+}
+
+.weui-form {
+  padding-top: 20rpx;
+}

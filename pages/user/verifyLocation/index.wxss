@@ -1,0 +1,27 @@
+/* pages/user/spectLocation/index.wxss */
+.container {
+  padding: 40rpx 20rpx;
+}
+
+.verify__shop-picker {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.verify__shop-picker picker {
+  display: inline-block;
+}
+
+.verify__shop-locaton {
+  padding: 20rpx;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.verify__sumit-btton {
+  padding-top: 80rpx;
+}

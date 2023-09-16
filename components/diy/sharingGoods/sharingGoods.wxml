@@ -26,7 +26,8 @@
             <!-- 商品价格 -->
             <view class="desc_footer">
               <text class="price_x" wx:if="{{ itemStyle.show.sharingPrice }}">¥{{ dataItem.sharing_price }}</text>
-              <text class="price_y col-9" wx:if="{{ itemStyle.show.linePrice && dataItem.line_price > 0 }}">¥{{ dataItem.line_price }}</text>
+              <text class="price_y col-9"
+                wx:if="{{ itemStyle.show.linePrice && dataItem.line_price > 0 }}">¥{{ dataItem.line_price }}</text>
             </view>
           </view>
           <view class="btn-settlement">去拼团</view>
@@ -34,14 +35,14 @@
       </button>
     </form>
   </view>
-  <view class="sharp-top--right">
-      <form bindsubmit="_onTargetSharpIndex" report-submit="true">
-        <button formType="submit" class="btn-normal dis-flex">
-          <view class="sharp-more dis-flex flex-y-center">
-            <text class="sharp-more-text">更多拼团</text>
-            <text class="sharp-more-arrow iconfont icon-xiangyoujiantou"></text>
-          </view>
-        </button>
-      </form>
-    </view>
+  <!-- <view class="sharp-top--right">
+    <form bindsubmit="_onTargetSharpIndex" report-submit="true">
+      <button formType="submit" class="btn-normal dis-flex">
+        <view class="sharp-more dis-flex flex-y-center">
+          <text class="sharp-more-text">更多拼团</text>
+          <text class="sharp-more-arrow iconfont icon-xiangyoujiantou"></text>
+        </view>
+      </button>
+    </form>
+  </view> -->
 </view>

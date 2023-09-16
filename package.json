@@ -1,0 +1,19 @@
+{
+  "name": "wzl",
+  "version": "1.0.0",
+  "description": "``` git clone http://git.daihuoduo.com/shop/wechat.miniprogram.git cd wechat.miniprogram cp siteinfo.demo.js  siteinfo.js ```",
+  "main": "app.js",
+  "dependencies": {
+    "@miniprogram-component-plus/tabs": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.leeyi.net/lwshop/wechat.miniprogram.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

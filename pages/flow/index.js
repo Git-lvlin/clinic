@@ -1,5 +1,5 @@
 const App = getApp();
-
+let url;
 // 工具类
 import Util from '../../utils/util.js';
 
@@ -51,10 +51,18 @@ Page({
     _this.setData({
       isLogin: App.checkIsLogin()
     });
+    
     if (_this.data.isLogin) {
       // 获取购物车列表
       _this.getCartList();
     }
+
+    // if (typeof this.getTabBar === 'function' &&
+    //     this.getTabBar()) {
+    //     this.getTabBar().setData({
+    //       selected: 2
+    //     })
+    //   }
   },
 
   /**
@@ -62,7 +70,7 @@ Page({
    */
   getCartList() {
     let _this = this;
-    App._get('cart/lists', {}, result => {
+    App._get("cart/lists", {}, result => {
       const data = result.data
       // 更新购物车数量及角标
       App.setCartTotalNum(data.order_total_num)
@@ -176,12 +184,11 @@ Page({
       App.showError('您还没有选择商品');
       return false;
     }
-    console.log(cartIds);
     wx.showModal({
       title: "提示",
       content: "您确定要移除选择的商品吗?",
       success(e) {
-        e.confirm && App._post_form('cart/delete', {
+        e.confirm && App._post_form("cart/delete", {
           goods_sku_id: cartIds
         }, result => {
           // 删除选中的商品
@@ -254,7 +261,7 @@ Page({
       title: '加载中',
       mask: true
     });
-    App._post_form('cart/add', {
+    App._post_form("cart/add", {
       goods_id: goods.goods_id,
       goods_num: 1,
       goods_sku_id: goodsSkuId
@@ -280,7 +287,7 @@ Page({
         title: '加载中',
         mask: true
       })
-      App._post_form('cart/sub', {
+      App._post_form("cart/sub", {
         goods_id: goods.goods_id,
         goods_sku_id: goodsSkuId
       }, () => {
@@ -326,7 +333,7 @@ Page({
    */
   goShopping() {
     wx.switchTab({
-      url: '../index/index',
+      url: '../category/list',
     });
   },
 

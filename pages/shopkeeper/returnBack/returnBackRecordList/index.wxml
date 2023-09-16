@@ -1,0 +1,49 @@
+<!--pages/shopkeeper/returnBack/returnBackRecordList/index.wxml-->
+<view>
+  <view class="header f-28 col-3">
+    <view catchtap="bindHeaderTap" class="{{dataType==='0'?'active':''}}" data-type="0">
+      <text>全部</text>
+    </view>
+
+    <view bindtap="bindHeaderTap" class="{{dataType==='1'?'active':''}}" data-type="1">
+      <text>待确认</text>
+    </view>
+
+    <view bindtap="bindHeaderTap" class="{{dataType==='3'?'active':''}}" data-type="3">
+      <text>已确认</text>
+    </view>
+  </view>
+
+  <view class="return-back__list">
+    <view class="weui-form-preview" wx:for="{{recordData}}" wx:for-item="list">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <label class="weui-form-preview__label">总个数</label>
+          <em class="weui-form-preview__value">{{list.refend_num}}</em>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd" wx:for="{{list.attach.items}}">
+        <view class="weui-form-preview__item">
+          <label class="weui-form-preview__label">{{item.category_name}}</label>
+          <text class="weui-form-preview__value">{{item.amount}} 个</text>
+        </view>
+      </view>
+
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <label class="weui-form-preview__label">提交时间</label>
+          <text class="weui-form-preview__value">{{list.create_time}}</text>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft" wx:if="{{list.status.value == 1}}">
+        <a bindtap="confirmReturn"
+        class="weui-form-preview__btn weui-form-preview__btn_primary" 
+        data-id="{{list.asset_log_id}}">确认</a>
+      </view>
+    </view>
+  </view>
+  <view class="title-footer p-r">
+    <text class="f-24 col-9 cont">我是有底线的</text>
+    <view class="hr"></view>
+  </view>
+</view>

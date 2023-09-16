@@ -2,7 +2,9 @@
 
   <!-- 顶部选项卡 -->
   <view wx:if="{{ isShowTab }}" class="swiper-tab dis-flex flex-y-center flex-x-around">
-    <view wx:for="{{ DeliveryTypeEnum }}" wx:key="this" class="swiper-tab-item {{ curDelivery == item.value ? 'on' : '' }}" data-current="{{ item.value }}" catchtap="onSwichDelivery">
+    <view wx:for="{{ DeliveryTypeEnum }}" wx:key="this"
+      class="swiper-tab-item {{ curDelivery == item.value ? 'on' : '' }}" data-current="{{ item.value }}"
+      catchtap="onSwichDelivery">
       {{ item.name }}
     </view>
   </view>
@@ -20,7 +22,8 @@
             <text class="detail-content__title-phone f-28">{{ address.phone }}</text>
           </view>
           <view class="detail-content__describe">
-            <text class="col-7">{{address.region.province}} {{address.region.city}} {{address.region.region}} {{address.detail}}</text>
+            <text class="col-7">{{address.region.province}} {{address.region.city}} {{address.region.region}}
+              {{address.detail}}</text>
           </view>
         </block>
         <block wx:else>
@@ -48,7 +51,8 @@
               <text class="f-30">{{ extract_shop.shop_name }}</text>
             </view>
             <view class="detail-content__describe">
-              <text class="col-7">{{extract_shop.region.province}} {{extract_shop.region.city}} {{extract_shop.region.region}} {{extract_shop.address}}</text>
+              <text class="col-7">{{extract_shop.region.province}} {{extract_shop.region.city}}
+                {{extract_shop.region.region}} {{extract_shop.address}}</text>
             </view>
           </block>
           <block wx:else>
@@ -78,6 +82,65 @@
         </view>
         <view class="item_ipt flex-box dis-flex flex-y-center">
           <input placeholder="请填写联系电话" bindinput="onInputPhone" value="{{ phone }}"></input>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 门店配送：配送地址 -->
+  <block wx:if="{{ curDelivery == DeliveryTypeEnum.STOREDELIVERY.value }}">
+
+    <view catchtap="onSelectAddress" class="flow-delivery">
+      <view class="flow-delivery__detail dis-flex flex-y-center">
+        <view class="detail-location dis-flex">
+          <text class="iconfont icon-dingwei"></text>
+        </view>
+        <view class="detail-content flex-box">
+          <block wx:if="{{ address.address_id }}">
+            <view class="detail-content__title dis-flex">
+              <text class="f-30">{{ address.name }}</text>
+              <text class="detail-content__title-phone f-28">{{ address.phone }}</text>
+            </view>
+            <view class="detail-content__describe">
+              <text class="col-7">{{address.region.province}} {{address.region.city}} {{address.region.region}}
+                {{address.detail}}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="detail-content__describe dis-flex">
+              <text class="col-6">请选择配送地址</text>
+            </view>
+          </block>
+        </view>
+        <view class="detail-arrow dis-flex">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
+        </view>
+      </view>
+    </view>
+
+    <view catchtap="onSelectExtractPoint" class="flow-delivery">
+      <view class="flow-delivery__detail dis-flex flex-y-center">
+        <view class="detail-location dis-flex">
+          <text class="iconfont icon-dingwei"></text>
+        </view>
+        <view class="detail-content flex-box">
+          <block wx:if="{{ extract_shop.shop_id }}">
+            <view class="detail-content__title dis-flex">
+              <text class="f-30">{{ extract_shop.shop_name }}</text>
+            </view>
+            <view class="detail-content__describe">
+              <text class="col-7">{{extract_shop.region.province}} {{extract_shop.region.city}}
+                {{extract_shop.region.region}} {{extract_shop.address}}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="detail-content__describe dis-flex">
+              <text class="col-6">请选择配送门店</text>
+            </view>
+          </block>
+        </view>
+        <view class="detail-arrow dis-flex">
+          <text class="iconfont icon-xiangyoujiantou user-orderJtou"></text>
         </view>
       </view>
     </view>
@@ -241,7 +304,8 @@
       <view class="coupon-list">
         <scroll-view scroll-y="{{ true }}" style="height: 565rpx;">
           <view class="coupon-item" wx:for="{{ coupon_list }}" wx:key="this">
-            <view class="item-wrapper color__{{ item.color.text }}" catchtap="onSelectCoupon" data-index="{{ index }}" data-id="{{ item.user_coupon_id }}">
+            <view class="item-wrapper color__{{ item.color.text }}" catchtap="onSelectCoupon" data-index="{{ index }}"
+              data-id="{{ item.user_coupon_id }}">
               <view class="coupon-type">{{ item.coupon_type.text }}</view>
               <view class="tip dis-flex flex-dir-column flex-x-center">
                 <view wx:if="{{ item.coupon_type.value == 10 }}">

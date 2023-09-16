@@ -132,10 +132,8 @@ Page({
             // test
             // [dataKey + '.test']: `test: ${item['room_id']}`,
           });
-          console.log(`getLiveStatus: ${item['room_id']}`);
         })
         .catch(err => {
-          console.log(`getLiveStatus: ${item['room_id']}`);
         });
     });
     return list;

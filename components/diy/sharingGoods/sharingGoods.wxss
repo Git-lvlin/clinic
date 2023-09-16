@@ -5,6 +5,7 @@
 
 .diy-sharingGoods {
   padding: 20rpx;
+  /* margin-top: 360rpx; */
 }
 
 .goods-item {

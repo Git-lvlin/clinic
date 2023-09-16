@@ -27,6 +27,7 @@ function call(fn, args) {
   return fn();
 }
 
+// Array tranform to JSON
 function serializer(args) {
   if (args.length === 1 && isPrimitive(args[0])) {
     return args[0];
@@ -37,6 +38,7 @@ function serializer(args) {
   }
   return JSON.stringify(obj);
 }
+
 
 function memoize(fn) {
   var cache = {};

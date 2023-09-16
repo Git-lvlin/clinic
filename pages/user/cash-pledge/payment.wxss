@@ -1,0 +1,54 @@
+/* pages/user/cash-pledge/payment.wxss */
+.pledge__payment {
+  background-color: white;
+  min-height: 100vh;
+}
+
+
+.pop-example__container {
+  background: #fff;
+  padding: 30rpx 40rpx;
+  border-radius: 10rpx;
+  min-width: 460rpx;
+}
+
+.pop-example__container .pop-title {
+  text-align: center;
+}
+
+.pop-content {
+  margin-top: 30rpx;
+}
+
+/* 弹出层：核销码 */
+
+.pop-qrcode .pop-content image {
+  display: block;
+  width: 460rpx;
+  height: 460rpx;
+}
+
+/* 弹出层：支付方式 */
+
+.pop-orderPay .pop-title {
+  text-align: left;
+}
+
+.pay-method .pay-item {
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  /* border-bottom: 1rpx solid rgb(248, 248, 248); */
+}
+
+.pay-method .pay-item .item-left_icon {
+  margin-right: 20rpx;
+  font-size: 32rpx;
+}
+
+.pay-method .pay-item .item-left_icon.wechat {
+  color: #00c800;
+}
+
+.pay-method .pay-item .item-left_icon.balance {
+  color: #ff9700;
+}

@@ -1,0 +1,33 @@
+<view class="weui-tab">
+  <view class="weui-tab__panel">
+  </view>
+  <view class="weui-tabbar">
+
+    <view class="{{activeIndex == 0 ? 'weui-bar__item_on weui-tabbar__item':'weui-tabbar__item'}}" bindtap="tabChange"
+      data-index="0">
+      <view style="display: inline-block; position: relative;">
+        <image wx:if="{{activeIndex == 0}}" src="/images/cate-active.png" alt class="weui-tabbar__icon"></image>
+        <image wx:else src="/images/cate.png" alt class="weui-tabbar__icon"></image>
+        <!-- <text class="weui-badge" style="position: absolute; top: -2px; right: -13px;">8</text> -->
+      </view>
+      <view class="weui-tabbar__label">水厂</view>
+    </view>
+
+    <view class="{{activeIndex == 1 ? 'weui-bar__item_on weui-tabbar__item':'weui-tabbar__item'}}" bindtap="tabChange"
+      data-index="1">
+      <image wx:if="{{activeIndex == 1}}" src="/images/flow-active.png" alt class="weui-tabbar__icon"></image>
+      <image wx:else src="/images/flow.png" alt class="weui-tabbar__icon"></image>
+      <view class="weui-tabbar__label">购物车</view>
+    </view>
+
+    <view class="{{activeIndex == 2 ? 'weui-bar__item_on weui-tabbar__item':'weui-tabbar__item'}}" bindtap="tabChange"
+      data-index="2">
+      <view style="display: inline-block; position: relative;">
+        <image src="/images/user.png" alt class="weui-tabbar__icon"></image>
+        <!-- <text class="weui-badge weui-badge_dot" style="position: absolute; top: 0; right: -6px;"></text> -->
+      </view>
+      <view class="weui-tabbar__label">我的</view>
+    </view>
+
+  </view>
+</view>

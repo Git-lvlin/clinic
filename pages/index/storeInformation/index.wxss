@@ -1,0 +1,62 @@
+/* pages/index/storeInformation/index.wxss */
+
+.store-information__banner {
+  width: 100%;
+  line-height: 0;
+  font-size: 0;
+}
+
+
+.store-information__banner image {
+  width: 100%;
+}
+
+.weui-cells__title {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+  padding-bottom: 14rpx;
+}
+
+.iconfont {
+  width: 40rpx;
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+  font-size: 36rpx;
+}
+
+.icon-caiyouduo_hemaixiangqing-dianzhuchupiao {
+  color: rgb(252, 46, 46);
+  font-size: 40rpx;
+}
+
+.icon-shijian {
+  color: #333;
+}
+
+.icon-dianhua1 {
+  color: orange
+}
+
+.icon-dizhi1 {
+  color: rgb(102, 179, 241);
+  font-size: 44rpx;
+}
+
+.icon-juli {
+  color: rgba(14, 202, 45, 0.774);
+}
+
+.store-information__navigate, .store-information__call {
+  color: rgb(101, 162, 255)
+}
+
+.weui-cell__ft {
+  font-size: 28rpx;
+  
+}
+
+.store-information {
+  padding-bottom: 80rpx;
+}

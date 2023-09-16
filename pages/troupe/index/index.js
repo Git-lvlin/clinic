@@ -123,7 +123,6 @@ Page({
     const _this = this;
     // 构建页面参数
     const params = App.getShareUrlParams();
-    console.log('onShareAppMessage params ', params)
     return {
       title: _this.data.basic.rule_title,
       path: "pages/troupe/index/index?" + params

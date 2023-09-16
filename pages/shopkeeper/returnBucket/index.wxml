@@ -1,0 +1,56 @@
+<!--pages/shopkeeper/returnBucket/index.wxml-->
+
+<view class="return-bucket">
+  <view class="header f-28 col-3">
+    <view catchtap="bindHeaderTap" class="{{dataType== 3?'active':''}}" data-type="3">
+      <text>未处理</text>
+    </view>
+    <view bindtap="bindHeaderTap" class="{{dataType== 2?'active':''}}" data-type="2">
+      <text>已收桶</text>
+		</view>
+		
+		<view bindtap="bindHeaderTap" class="{{dataType== 1?'active':''}}" data-type="1">
+      <text>已完成</text>
+    </view>
+  </view>
+
+  
+  <view class="weui-form-preview" wx:for="{{taskList.data}}" wx:key="this">
+			<view class="weui-form-preview__hd">
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">押金金额</label>
+					<em class="weui-form-preview__value">¥{{item.pay_price}}</em>
+				</view>
+			</view>
+			<view class="weui-form-preview__bd">
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">用户昵称</label>
+					<text class="weui-form-preview__value">{{item.user.nickName}}</text>
+				</view>
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">交押时间</label>
+					<text class="weui-form-preview__value">{{item.pay_time}}</text>
+				</view>
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">申请时间</label>
+					<text class="weui-form-preview__value">{{item.apply_time}}</text>
+				</view>
+				<view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">支付方式</label>
+					<text class="weui-form-preview__value">{{item.pay_type.text}}</text>
+        </view>
+        
+        <view class="weui-form-preview__item">
+					<label class="weui-form-preview__label">状态</label>
+					<text class="weui-form-preview__value">{{item.status.text}}</text>
+				</view>
+			</view>
+			<view class="weui-form-preview__ft" wx:if="{{item.status.value === 3}}">
+				<button bindtap="returnBucketConfirm" class="weui-form-preview__btn weui-form-preview__btn_primary" data-id="{{item.deposit_id}}">确认收桶</button>
+			</view>
+		</view>
+		<view class="title-footer p-r">
+    <text class="f-24 col-9 cont">我是有底线的</text>
+    <view class="hr"></view>
+  </view>
+</view>

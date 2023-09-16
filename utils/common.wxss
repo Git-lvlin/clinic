@@ -143,6 +143,10 @@ input {
   align-items: center;
 }
 
+.f-80 {
+  font-size: 60rpx;
+}
+
 .f-36 {
   font-size: 36rpx;
 }
@@ -288,7 +292,7 @@ input {
   padding-bottom: 112rpx;
 }
 
-.onelist-hidden {
+.onelist-hidden, .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

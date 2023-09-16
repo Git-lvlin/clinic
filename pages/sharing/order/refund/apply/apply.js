@@ -126,7 +126,6 @@ Page({
 
     // form提交执行函数
     let fromPostCall = function(params) {
-      console.log('fromPostCall');
       App._post_form('sharing.refund/apply', params, function(result) {
           if (result.code === 1) {
             App.showSuccess(result.msg, function() {
@@ -179,7 +178,6 @@ Page({
           i++;
           if (imagesLength === i) {
             // 所有文件上传完成
-            console.log('upload complete');
             formData['images'] = uploaded;
             // 执行回调函数
             callBack && callBack(formData);

@@ -1,0 +1,12 @@
+/* pages/globalSearch/index.wxss */
+.global-search {
+  padding-top: 10px;
+}
+.global-search input {
+  border: 1px solid #eee;
+  background-color: #fff;
+  height: 36px;
+  width: 88%;
+  margin: 0 auto;
+  padding: 0 10px;
+}

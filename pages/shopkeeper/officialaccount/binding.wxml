@@ -1,0 +1,10 @@
+<!--pages/shopkeeper/officialaccount/binding.wxml-->
+<view style="padding: 10rpx;">
+<web-view 
+style=""
+bindmessage="handleGetMessage"  
+src="{{openUrl}}">
+  正在订阅订单通知...
+</web-view>
+</view>
+

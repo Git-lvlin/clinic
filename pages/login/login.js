@@ -8,9 +8,9 @@ Page({
     isLogin: false,
     mobile_acquired: false,
     userinfo_acquired: false,
+    show: false,
     options: {
-    },
-    show: false
+    }
   },
 
   /**
@@ -18,14 +18,12 @@ Page({
    */
   onLoad(options) {
     let _this = this;
-    console.log('onLoad1', typeof(_this.data), _this.data)
     _this.setData({
       options: options,
       isLogin: App.checkIsLogin(),
       mobile_acquired: App.checkMobileAcquired(),
       userinfo_acquired: App.checkUserinfoAcquired(),
     });
-    console.log('onLoad2', typeof(_this.data), _this.data)
   },
 
   getPhoneNumber(e) {
@@ -62,7 +60,6 @@ Page({
    * 授权登录（新版）
    */
   getUserProfile() {
-    console.log('getUserProfile ', App.checkMobileAcquired(), wx.canIUse('getUserProfile'))
 
     if (!App.checkMobileAcquired()) {
       App.showError('请先授权微信绑定的手机号');
@@ -76,7 +73,6 @@ Page({
       desc: '获取用户相关信息',
       success(result) {
         console.log('用户同意了授权')
-        console.log('result: ', result)
         App.getUserInfo(result, () => {
           // 跳转回原页面
           app.onNavigateBack(1)
@@ -110,9 +106,6 @@ Page({
     wx.switchTab({
       url: '/pages/index/index'
     })
-    // wx.navigateBack({
-    //   delta: Number(delta || 1)
-    // });
   },
 
 })

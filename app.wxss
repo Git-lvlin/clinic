@@ -1,8 +1,9 @@
 /* common.wxss */
 @import "/utils/common.wxss";
+@import './style/iconfont/iconfont.wxss';
 
 page {
-  background: #f7f7f7;
+  background: #f4f4f4;
 }
 
 .common-header-xian {
@@ -404,7 +405,7 @@ page {
 }
 
 .flow-btn {
-  background: linear-gradient(to right, #fa1e8c 0, #fc1e56 100%);
+  background: linear-gradient(to right, #fa1e3b 0, #fc1e56 100%);
   color: #fff;
   text-align: center;
   line-height: 92rpx;
@@ -473,8 +474,8 @@ page {
 }
 
 .profile-btn button {
-  background: linear-gradient(to right, #fa1e8c 0, #fc1e56 100%);
-  color: white;
+  background: white;
+  color: #1aad19;
   margin-bottom: 20rpx;
 }
 
@@ -628,4 +629,34 @@ page {
   float: right;
   margin-right: 10rpx;
   margin-top: -5rpx;
+  font-size: 42rpx;
+  font-weight: bold;
+}
+
+.weui-navbar__title {
+  font-size: 28rpx;
+}
+
+.weui-tabs-bar__wrp {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.weui-tabs-swiper {
+  width: 100%;
+  height: 100px;
+}
+
+.tab-content {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 40rpx;
+}
+
+.weui-tabs-bar__title {
+  margin: 0px 10px;
 }

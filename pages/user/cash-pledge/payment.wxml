@@ -1,0 +1,91 @@
+<!--pages/user/cash-pledge/payment.wxml-->
+<view class="pledge__payment">
+	<view class="weui-form">
+		<view class="weui-form__control-area">
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells weui-cells_form">
+
+					<view class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd"><label class="weui-label">订水门店</label></view>
+						<view class="weui-cell__bd">
+							<navigator url="{{'../../_select/extract_point/index?selected_id='+selectedShopId}}">{{shopName}}</navigator>
+						</view>
+					</view>
+
+					<view class="weui-cell weui-cell_active">
+						<view class="weui-cell__hd"><label class="weui-label">押金金额</label></view>
+						<view class="weui-cell__bd">
+							<input class="weui-input" 
+              value="{{defaultSum}}" 
+              bindblur="handleSumInput"
+              type="number" placeholder="100" 
+              placeholder-class="weui-input__placeholder" />
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+		
+		<view class="weui-form__opr-area">
+			<a class="weui-btn weui-btn_primary" bindtap="onTogglePayPopup">支付</a>
+		</view>
+		
+		<view class="weui-form__extra-area">
+			<view class="weui-footer">
+				<view class="weui-footer__links">
+					<view  class="weui-footer__link" bindtap="showDialog">
+          <mp-icon icon="info" type="field" size="{{16}}" color="#666"></mp-icon>
+          押金说明
+          </view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
+	 <!-- 支付方式弹窗 -->
+	 <zan-popup show="{{ showPayPopup }}" bindclose="onTogglePayPopup">
+    <view class="pop-orderPay pop-example__container">
+      <view class="pop-title">
+        <text class="f-30">请选择支付方式</text>
+      </view>
+      <view class="pop-content">
+        <view class="pay-method">
+          <form bindsubmit="onSelectPayType" data-value="{{ PayTypeEnum.WECHAT.value }}" report-submit="true">
+            <button formType="submit" class="btn-normal">
+              <view class="pay-item dis-flex flex-x-between">
+                <view class="item-left dis-flex flex-y-center">
+                  <view class="item-left_icon wechat">
+                    <text class="iconfont icon-weixinzhifu"></text>
+                  </view>
+                  <view class="item-left_text">
+                    <text>{{ PayTypeEnum.WECHAT.name }}</text>
+                  </view>
+                </view>
+              </view>
+            </button>
+          </form>
+          <form bindsubmit="onSelectPayType" data-value="{{ PayTypeEnum.BALANCE.value }}" report-submit="true">
+            <button formType="submit" class="btn-normal">
+              <view class="pay-item dis-flex flex-x-between">
+                <view class="item-left dis-flex flex-y-center">
+                  <view class="item-left_icon balance">
+                    <text class="iconfont icon-qiandai"></text>
+                  </view>
+                  <view class="item-left_text">
+                    <text>{{ PayTypeEnum.BALANCE.name }}</text>
+                  </view>
+                </view>
+              </view>
+            </button>
+          </form>
+        </view>
+      </view>
+    </view>
+  </zan-popup>
+
+  <mp-dialog show="{{showDialog}}" title="押金提示" buttons="{{[{text: '知道了'}]}}" bindbuttontap="bindbuttontap">
+    <text>押金为水桶成本，退桶时我们将无息全额退还给您</text>
+  </mp-dialog>
+</view>

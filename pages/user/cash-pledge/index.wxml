@@ -1,0 +1,18 @@
+<!--pages/user/cash-pledge/index.wxml-->
+<view class="cash-pledge">
+  <view class="cash-pledge__state" wx:if="{{pay_status.value === 20}}">
+    <text>￥{{pay_price}}</text>
+    <a style="font-size: 28rpx; color: orange; padding-left: 20rpx;" wx:if="status.value === 3">
+      {{status.text}}
+    </a>
+  </view>
+  <view class="cash-pledge__state" wx:else>
+    未交押金
+  </view>
+  <view class="cash-pledge__button" wx:if="{{status.value === 5 || status.value === 1}}">
+    <button type="primary" class="weui-btn_warn" bindtap="topay">交押金</button>
+  </view>
+  <view class="cash-pledge__button" wx:else>
+    <button type="primary" class="weui-btn_warn" disabled="{{status.value !== 4}}" bindtap="rebackPledge">退押金</button>
+  </view>
+</view>

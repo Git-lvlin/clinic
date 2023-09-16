@@ -162,7 +162,6 @@ Page({
   // 倒计时结束刷新页面
   onCountDownEnd() {
     const app = this
-    console.log('onCountDownEnd')
     setTimeout(() => {
       app.onRefreshPage()
     }, 200)

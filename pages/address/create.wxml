@@ -41,11 +41,17 @@
         </view>
       </view>
     </view>
-    <view class="padding-box m-top35 btn-green btn-sm">
+
+    <view class="padding-box m-top35 btn-green btn-sm" wx:if="{{!name}}">
       <button class="f-32" catchtap="chooseAddress">一键获取微信地址</button>
     </view>
-    <view class="padding-box m-top20 profile-btn">
-      <button formType="submit" disabled="{{disabled}}">保存</button>
+
+    <view class="padding-box m-top20 profile-btn"  wx:if="{{!name}}">
+      <button formType="submit"  disabled="{{disabled}}" >保存</button>
+    </view>
+
+    <view class="padding-box m-top35 profile-btn btn-green" wx:else>
+      <button class="f-32" formType="submit">保存</button>
     </view>
   </form>
 </view>

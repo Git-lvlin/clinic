@@ -1,23 +1,39 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/oilcard/index",
-    "pages/oilcard/bind",
-    "pages/custom/index",
-    "pages/category/index",
     "pages/category/list",
+    "pages/index/index",
+    "pages/shopkeeper/index",
+    "pages/shopkeeper/officialaccount/binding",
+    "pages/index/storeInformation/index",
+    "pages/index/nail_picture/nail_picture",
+    "pages/warehouse/index/index",
+    "pages/warehouse/goods/index",
+    "pages/warehouse/goods/comment/comment",
+    "pages/warehouse/flow/index",
+    "pages/warehouse/flow/checkout",
+    "pages/shopkeeper/sale-order/index",
+    "pages/shopkeeper/purchase-order/index",
+    "pages/shopkeeper/bill/index",
+    "pages/shopkeeper/dealer/apply/apply",
+    "pages/shopkeeper/dealer/withdraw/apply/apply",
+    "pages/shopkeeper/sharing-order/index",
+    "pages/shopkeeper/sharing-order/detail",
+    "pages/shopkeeper/returnBucket/index",
+    "pages/shopkeeper/returnBack/returnBackRecordList/index",
     "pages/goods/index",
     "pages/goods/comment/comment",
     "pages/search/index",
     "pages/flow/index",
     "pages/flow/checkout",
-    "pages/coupon/coupon",
     "pages/user/index",
     "pages/user/wallet/index",
     "pages/user/wallet/balance/log",
+    "pages/user/recharge/index",
     "pages/user/recharge/order/index",
     "pages/user/coupon/coupon",
     "pages/user/help/index",
+    "pages/user/verifyLocation/index",
+    "pages/coupon/coupon",
     "pages/order/index",
     "pages/order/detail",
     "pages/order/express/express",
@@ -28,13 +44,10 @@
     "pages/address/index",
     "pages/address/create",
     "pages/address/detail",
-    "pages/login/login",
     "pages/dealer/index/index",
     "pages/dealer/apply/apply",
     "pages/dealer/order/order",
     "pages/dealer/team/team",
-    "pages/dealer/withdraw/apply/apply",
-    "pages/dealer/withdraw/list/list",
     "pages/dealer/qrcode/qrcode",
     "pages/sharing/index/index",
     "pages/sharing/goods/index",
@@ -49,47 +62,51 @@
     "pages/sharing/order/refund/index",
     "pages/sharing/order/refund/apply/apply",
     "pages/sharing/order/refund/detail/detail",
-    "pages/article/index",
-    "pages/article/detail/index",
-    "pages/_select/extract_point/index",
     "pages/shop/detail/index",
+    "pages/_select/extract_point/index",
     "pages/store/check/order",
-    "pages/bargain/index/index",
-    "pages/bargain/task/index",
-    "pages/bargain/goods/index",
     "pages/points/log/index",
+    "pages/login/login",
     "pages/sharp/index/index",
     "pages/sharp/goods/index",
-    "pages/live/index",
+    "pages/troupe/index/index",
+    "pages/sale-men/index",
+    "pages/sale-men/task-flow",
+    "pages/sale-men/write-info",
+    "pages/user/cash-pledge/payment",
+    "pages/user/cash-pledge/reback-pledge",
+    "pages/user/cash-pledge/index",
+    "pages/driver/index",
+    "pages/driver/returnBack/index",
     "pages/invite/index",
     "pages/inviteAffirm/index",
-    "pages/troupe/index/index",
-    "pages/oilcard/recharge",
-    "pages/oilcard/recharge_order"
+    "pages/globalSearch/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#0ca64f",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
+    "custom": false,
     "color": "#6e6d6b",
     "selectedColor": "#fd4a5f",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
+    "position": "bottom",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home-active.png"
-      },
-      {
-        "pagePath": "pages/category/index",
-        "text": "分类",
+        "pagePath": "pages/category/list",
+        "text": "商城",
         "iconPath": "images/cate.png",
         "selectedIconPath": "images/cate-active.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "店铺",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
       },
       {
         "pagePath": "pages/flow/index",
@@ -103,14 +120,17 @@
         "iconPath": "images/user.png",
         "selectedIconPath": "images/user-active.png"
       }
-    ],
-    "position": "bottom"
+    ]
   },
   "debug": false,
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于为您提供更合适您的服务"
     }
+  },
+  "usingComponents": {},
+  "useExtendedLib": {
+    "weui": true
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -99,8 +99,8 @@ Page({
     });
   },
 
-  /** 
-   * 点击tab切换 
+  /**
+   * 点击tab切换
    */
   swichNav: function(e) {
     let _this = this,

@@ -33,6 +33,17 @@ Page({
     _this.getOrderDetail(options.order_id);
   },
 
+   /*
+    唤起手机拔号程序
+  */
+ invoceDeviceCall(){
+  let _this = this;
+
+  wx.makePhoneCall({
+    phoneNumber: _this.data.order.extract_shop.phone
+  })
+},
+
   /**
    * 获取订单详情
    */

@@ -18,6 +18,10 @@
   line-height: 1;
 }
 
+.store_nav_cont .flex-box {
+  line-height: 64rpx;
+}
+
 .store_nav_cont #list-true .price__arrow text.active {
   color: #ff495e;
 }
@@ -62,7 +66,6 @@
 }
 
 .list-header {
-  position: fixed;
   top: 1rpx;
   left: 0;
   right: 0;
@@ -165,4 +168,8 @@
 
 .detail-price .line-price {
   text-decoration: line-through;
+}
+
+.weui-navbar__title {
+  font-size: 24rpx;
 }

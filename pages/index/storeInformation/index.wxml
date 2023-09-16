@@ -1,0 +1,49 @@
+<!--pages/index/storeInformation/index.wxml-->
+<view class="store-information">
+  <view class="store-information__banner" >
+    <image src="{{information.logo_url}}" mode="widthFix"></image>
+  </view>
+
+  <view class="weui-cells__title">{{information.shop_name}}</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_example ">
+      <view class="weui-cell__hd">
+        <text class="iconfont icon-caiyouduo_hemaixiangqing-dianzhuchupiao"></text>
+      </view>
+      <view class="weui-cell__bd">店主</view>
+      <view class="weui-cell__ft">{{information.linkman}}</view>
+    </view>
+    <view class="weui-cell weui-cell_example ">
+      <view class="weui-cell__hd">
+        <text class="iconfont icon-shijian"></text>
+      </view>
+      <view class="weui-cell__bd">营业时间</view>
+      <view class="weui-cell__ft">{{information.shop_hours}}</view>
+    </view>
+
+    <view class="weui-cell weui-cell_example ">
+      <view class="weui-cell__hd">
+        <text class="iconfont icon-juli"></text>
+      </view>
+      <view class="weui-cell__bd">距离</view>
+      <view class="weui-cell__ft">
+        {{information.distance}}</view>
+    </view>
+
+    <view class="weui-cell weui-cell_example ">
+      <view class="weui-cell__hd">
+        <text class="iconfont icon-dianhua1"></text>
+      </view>
+      <view class="weui-cell__bd">电话</view>
+      <view class="weui-cell__ft store-information__call" bindtap="callShopkeeper">{{information.phone}}</view>
+    </view>
+
+    <view class="weui-cell weui-cell_example ">
+      <view class="weui-cell__hd">
+        <text class="iconfont icon-dizhi1"></text>
+      </view>
+      <view class="weui-cell__bd">地址</view>
+      <view class="weui-cell__ft store-information__navigate" bindtap="navigateToStore">{{information.address}}</view>
+    </view>
+  </view>
+</view>

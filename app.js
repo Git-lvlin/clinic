@@ -2,13 +2,13 @@
  * tabBar页面路径列表 (用于链接跳转时判断)
  * tabBarLinks为常量, 无需修改
  */
-const tabBarLinks = [
-  'pages/index/index',
-  'pages/category/index',
-  'pages/flow/index',
-  'pages/user/index',
-  'pages/sharing/index/index'
-];
+ const tabBarLinks = [
+ 'pages/index/index',
+ 'pages/category/list',
+ 'pages/flow/index',
+ 'pages/user/index',
+ 'pages/sharing/index/index'
+ ];
 
 // 站点配置文件
 import siteinfo from './siteinfo.js';
@@ -27,6 +27,17 @@ App({
     openid: '',
     session_key: '',
     mobile_acquired: false,
+    storeList: [],
+    storeInfo: {},
+    shop_id: '',
+    storeInfo: {},
+    role: 0, // 0 用户 1店主 2 店员 3仓库,
+    coordinate: {
+      longitude: '113.75179',
+      latitude: '23.02067'
+    },
+    shopInfo: {}, // 某个水店的信息，在退桶时选择完门店并显示门店
+    leastOrderQuantity: 1, //水店最小起订量
   },
 
   // api地址
@@ -35,7 +46,7 @@ App({
   /**
    * 生命周期函数--监听小程序初始化
    */
-  onLaunch(e) {
+   onLaunch(e) {
     let _this = this;
     // 小程序主动更新
     _this.updateManager();
@@ -47,6 +58,8 @@ App({
         _this._wxLoginSuccess(resp0)
       }
     });
+
+    _this.globalData.role = wx.getStorageSync('role') || 0;
   },
 
   _wxLoginSuccess(resp0) {
@@ -65,15 +78,16 @@ App({
           referee_id: _this.getRefereeid(),
           invite_code: _this.getOtherInviteCode()
         },
-        success: function(resp1){
+        success: function (resp1) {
           var res = resp1.data
           // 后台PHP 的 code = 1 表示成功
           if (res && res.code == 1) {
+            console.log(res.data.openid)
             _this.globalData.openid = res.data.openid
             _this.globalData.session_key = res.data.session_key
             _this.globalData.mobile_acquired = res.data.mobile_acquired
             _this.globalData.userinfo_acquired = res.data.userinfo_acquired
-            _this.checkMobileAcquired();
+            //_this.checkMobileAcquired();
             if (_this.checkMobileAcquired() && _this.checkUserinfoAcquired() && res.data.token) {
               // 记录token user_id
               wx.setStorageSync('token', res.data.token);
@@ -83,15 +97,15 @@ App({
               wx.setStorageSync('user_id', res.data.user_id);
               _this.saveMyInviteCode(res.data.invite_code)
             }
-            if(!_this.checkIsLogin()&&wx.getStorageSync('referee_id')){
+            if (!_this.checkIsLogin() && wx.getStorageSync('referee_id')) {
               wx.setStorageSync('referee_id_Login', 1)
               wx.reLaunch({
                 url: '/pages/invite/index',
               })
             }
             let newUser = _this.getRefereeid() || _this.getMyInviteCode() ? true : false;
-            if(_this.globalData.mobile_acquired && !_this.globalData.userinfo_acquired && newUser){
-              wx.setStorageSync('referee_id_Login',2)
+            if (_this.globalData.mobile_acquired && !_this.globalData.userinfo_acquired && newUser) {
+              wx.setStorageSync('referee_id_Login', 2)
               wx.reLaunch({
                 url: '/pages/inviteAffirm/index',
               })
@@ -100,28 +114,28 @@ App({
         }
       })
     } else {
-      console.log('获取openid失败' + res.errMsg)
+      console.error('获取openid失败' + res.errMsg)
     }
   },
 
   /**
    * 小程序启动场景
    */
-  onStartupScene(query) {
+   onStartupScene(query) {
     // 获取场景值
     let scene = this.getSceneData(query);
     // 记录推荐人id
     let refereeId = query.referee_id ? query.referee_id : scene.uid;
     refereeId > 0 && (this.saveRefereeId(refereeId));
 
-    let invite_code_others = query.invite_code ? query.invite_code:scene.invite_code
+    let invite_code_others = query.invite_code ? query.invite_code : scene.invite_code
     this.saveOtherInviteCode(invite_code_others)
   },
 
   /**
    * 获取商城ID
    */
-  getWxappId() {
+   getWxappId() {
     return siteinfo.uniacid || 10001;
   },
 
@@ -145,6 +159,7 @@ App({
     wx.setStorageSync('invite_code', invite_code)
     return true;
   },
+  
   getMyInviteCode() {
     return wx.getStorageSync('invite_code')
   },
@@ -156,6 +171,7 @@ App({
     wx.setStorageSync('invite_code_others', invite_code)
     return true;
   },
+  
   getOtherInviteCode() {
     return wx.getStorageSync('invite_code_others')
   },
@@ -163,16 +179,17 @@ App({
   /**
    * 获取场景值(scene)
    */
-  getSceneData(query) {
+   getSceneData(query) {
     return query.scene ? util.scene_decode(query.scene) : {};
   },
 
   /**
    * 当小程序启动，或从后台进入前台显示，会触发 onShow
    */
-  onShow(options) {
-    let App = this;
-    try {
+   onShow(options) {
+    //let App = this;
+    //App.globalData.role = Number(wx.getStorageSync('role') || 0)
+    /*try {
       const livePlayer = requirePlugin('live-player-plugin');
       if (options.scene == 1007 || options.scene == 1008 || options.scene == 1044) {
         livePlayer.getShareParams()
@@ -193,19 +210,19 @@ App({
       }
     } catch (error) {
 
-    }
+    }*/
   },
 
   /**
    * 执行用户登录
    */
-  doLogin(delta) {
+   doLogin(delta) {
     // 保存当前页面
     let pages = getCurrentPages();
     if (pages.length) {
       let currentPage = pages[pages.length - 1];
       "pages/login/login" != currentPage.route &&
-        wx.setStorageSync("currentPage", currentPage);
+      wx.setStorageSync("currentPage", currentPage);
     }
     // 跳转授权页面
     wx.navigateTo({
@@ -219,6 +236,9 @@ App({
     }
     wx.setStorageSync('token', '');
     wx.setStorageSync('user_id', '');
+    wx.removeStorageSync('invite_code');
+    wx.setStorageSync('role', 0);
+
     wx.switchTab({
       url: goto
     });
@@ -227,14 +247,14 @@ App({
   /**
    * 当前用户id
    */
-  getUserId() {
+   getUserId() {
     return wx.getStorageSync('user_id');
   },
 
   /**
    * 显示成功提示框
    */
-  showSuccess(msg, callback) {
+   showSuccess(msg, callback) {
     wx.showToast({
       title: msg,
       icon: 'success',
@@ -251,15 +271,12 @@ App({
   /**
    * 显示失败提示框
    */
-  showError(msg, callback) {
+   showError(msg, callback) {
     wx.showModal({
       title: '友情提示',
       content: msg,
       showCancel: false,
       success(res) {
-        // callback && (setTimeout(() => {
-        //   callback();
-        // }, 1500));
         callback && callback();
       }
     });
@@ -268,7 +285,7 @@ App({
   /**
    * get请求
    */
-  _get(url, data, success, fail, complete, check_login) {
+   _get(url, data, success, fail, complete, check_login) {
     wx.showNavigationBarLoading();
     let _this = this;
     // 构造请求参数
@@ -289,7 +306,6 @@ App({
         data: data,
         success(res) {
           if (res.statusCode !== 200 || typeof res.data !== 'object') {
-            console.log(res);
             _this.showError('网络请求出错');
             return false;
           }
@@ -324,7 +340,7 @@ App({
   /**
    * post提交
    */
-  _post_form(url, data, success, fail, complete, isShowNavBarLoading) {
+   _post_form(url, data, success, fail, complete, isShowNavBarLoading) {
     let _this = this;
 
     isShowNavBarLoading || true;
@@ -377,7 +393,7 @@ App({
   /**
    * 验证是否存在user_info
    */
-  validateUserInfo() {
+   validateUserInfo() {
     let user_info = wx.getStorageSync('user_info');
     return !!wx.getStorageSync('user_info');
   },
@@ -385,7 +401,7 @@ App({
   /**
    * 小程序主动更新
    */
-  updateManager() {
+   updateManager() {
     if (!wx.canIUse('getUpdateManager')) {
       return false;
     }
@@ -420,7 +436,7 @@ App({
   /**
    * 获取tabBar页面路径列表
    */
-  getTabBarLinks() {
+   getTabBarLinks() {
     return tabBarLinks;
   },
 
@@ -450,7 +466,7 @@ App({
    * 记录formId
    * (因微信模板消息已下线，所以formId取消不再收集)
    */
-  saveFormId(formId) {
+   saveFormId(formId) {
     return true;
     // let _this = this;
     // console.log('saveFormId');
@@ -465,7 +481,7 @@ App({
   /**
    * 生成转发的url参数
    */
-  getShareUrlParams(params) {
+   getShareUrlParams(params) {
     let _this = this;
     return util.urlEncode(Object.assign({
       referee_id: _this.getUserId(),
@@ -476,7 +492,7 @@ App({
   /**
    * 发起微信支付
    */
-  wxPayment(option) {
+   wxPayment(option) {
     let options = Object.assign({
       payment: {},
       success: () => {},
@@ -504,14 +520,14 @@ App({
   /**
    * 验证登录
    */
-  checkIsLogin() {
+   checkIsLogin() {
     return wx.getStorageSync('token') != '' && wx.getStorageSync('user_id') != '';
   },
 
   /**
    * 解密手机号码
    */
-  getPhoneNumber(e, callback) {
+   getPhoneNumber(e, callback) {
     let _this = this;
 
     if (e.detail.errMsg !== "getPhoneNumber:ok") {
@@ -525,7 +541,6 @@ App({
       });
     }
     if (!_this.globalData.session_key) {
-      console.log('_this.globalData.session_key empty')
       return;
     }
     wx.request({
@@ -540,7 +555,7 @@ App({
         invite_code: _this.getOtherInviteCode()
       },
       method: "post",
-      success: function(resp){
+      success: function (resp) {
         var result = resp.data
         // 后台PHP 的 code = 1 表示成功
         if (result && result.code == 1) {
@@ -567,7 +582,7 @@ App({
   /**
    * 授权登录
    */
-  getUserInfo(info, callback) {
+   getUserInfo(info, callback) {
     let App = this;
     wx.showLoading({
       title: "正在登录",
@@ -577,7 +592,8 @@ App({
     wx.login({
       success(res) {
         // 发送用户信息
-        App._post_form('user/login', {
+        let queryStr = "&wxapp_id=" + App.getWxappId()
+        App._post_form('user/login' + queryStr, {
           code: res.code,
           encrypted_data: info.encryptedData,
           iv: info.iv,
@@ -589,6 +605,7 @@ App({
           wx.setStorageSync('token', result.data.token);
           wx.setStorageSync('user_id', result.data.user_id);
           wx.setStorageSync('invite_code', result.data.invite_code);
+          //wx.setStorageSync('shop_list', result.data.shop_list);
           // 执行回调函数
           callback && callback();
         }, false, () => {
@@ -601,7 +618,7 @@ App({
   /**
    * 获取推荐人id
    */
-  getRefereeid() {
+   getRefereeid() {
     return wx.getStorageSync('referee_id');
   },
 
@@ -621,16 +638,15 @@ App({
    * 记录购物车商品总数量
    * @param {*} value
    */
-  setCartTotalNum(value) {
-    wx.setStorageSync('cartTotalNum', Number(value))
+   setCartTotalNum(value, label) {
+    wx.setStorageSync(label || 'cartTotalNum', Number(value))
   },
 
   /**
    * 设置购物车tabbar的角标
    */
-  setCartTabBadge() {
+   setCartTabBadge() {
     const number = wx.getStorageSync('cartTotalNum')
-    console.log('setCartTabBadge ', number)
     if (number > 0) {
       wx.setTabBarBadge({
         index: 2,

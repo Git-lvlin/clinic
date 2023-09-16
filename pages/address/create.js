@@ -13,7 +13,6 @@ Page({
     region: '',
     phone: '',
     detail: '',
-
     error: '',
   },
 

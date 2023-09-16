@@ -27,22 +27,22 @@ Page({
     // 获取默认门店列表
     _this.getShopList();
     // 获取用户坐标
-    _this.getLocation((res) => {
-      _this.getShopList(res.longitude, res.latitude);
-    });
+    // _this.getLocation((res) => {
+    //   _this.getShopList(res.longitude, res.latitude);
+    // });
   },
 
   /**
    * 获取门店列表
    */
-  getShopList(longitude, latitude) {
+  getShopList() {
     let _this = this;
     _this.setData({
       isLoading: true
     });
     App._get('shop/lists', {
-      longitude: longitude || '',
-      latitude: latitude || ''
+      longitude: App.globalData.coordinate.longitude ||  23.020893,
+      latitude: App.globalData.coordinate.latitude || 113.751884,
     }, (result) => {
       _this.setData({
         shopList: result.data.list,
@@ -89,7 +89,6 @@ Page({
           setTimeout(() => {
             // 获取用户坐标
             _this.getLocation((res) => {
-              console.log('获取用户坐标');
               _this.getShopList(res.longitude, res.latitude);
             });
           }, 1000);
@@ -104,6 +103,7 @@ Page({
   onSelectedShop(e) {
     let _this = this,
       selectedId = e.currentTarget.dataset.id;
+      App.globalData.shopInfo = _this.data.shopList.find(item => item.shop_id === selectedId)
     // 设置选中的id
     _this.setData({
       selectedId
@@ -117,6 +117,7 @@ Page({
     prevPage.setData({
       selectedShopId: selectedId
     });
+    wx.setStorageSync('favorite_shop', selectedId)
     // 返回上级页面
     wx.navigateBack({
       delta: 1

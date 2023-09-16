@@ -17,13 +17,13 @@ Page({
     var titleTextColor = wx.getStorageSync('titleTextColor')
     var titleBackgroundColor = wx.getStorageSync('titleBackgroundColor')
     this.getreferee()
-    if (titleTextColor && titleBackgroundColor) {
-      // 设置navbar标题、颜色
-      wx.setNavigationBarColor({
-        frontColor: titleTextColor,
-        backgroundColor: titleBackgroundColor
-      })
-    }
+    // if (titleTextColor && titleBackgroundColor) {
+    //   // 设置navbar标题、颜色
+    //   wx.setNavigationBarColor({
+    //     frontColor: titleTextColor,
+    //     backgroundColor: titleBackgroundColor
+    //   })
+    // }
   },
 
   /**

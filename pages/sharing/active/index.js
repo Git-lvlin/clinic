@@ -89,7 +89,6 @@ Page({
     let goodsDetail = data.goods;
     // 当前用户是否已参团
     data['is_join'] = _this.checkUserIsJoin(data.detail.users);
-    console.log(data['is_join']);
     // 当前用户是否为创建者
     data['is_creator'] = !!(data.detail.creator_id == App.getUserId())
 

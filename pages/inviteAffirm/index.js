@@ -44,13 +44,46 @@ Page({
   onHide: function () {
 
   },
+
+  /**
+   * 授权登录（新版）
+   */
+  getUserProfile() {
+
+    // if (!App.checkMobileAcquired()) {
+    //   App.showError('请先授权微信绑定的手机号');
+    //   return;
+    // }
+
+    const app = this
+    // wx.canIUse('getUserProfile') && wx.getUserProfile({
+    wx.getUserProfile({
+      lang: 'zh_CN',
+      desc: '获取用户相关信息',
+      success(result) {
+        console.log('用户同意了授权')
+        App.getUserInfo(result, () => {
+          wx.removeStorageSync('referee_id_Login')
+          // 跳转回原页面
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        });
+      },
+      fail() {
+        console.log('用户拒绝了授权')
+      }
+    })
+  },
+
   getUserInfo(e) {
+
     if (!App.checkMobileAcquired()) {
       App.showError('请先授权微信绑定的手机号');
       return;
     }
     let _this = this;
-    App.getUserInfo(e, () => {
+    App.getUserInfo(e.detail, () => {
       wx.removeStorageSync('referee_id_Login')
       wx.switchTab({
         url: '/pages/index/index'

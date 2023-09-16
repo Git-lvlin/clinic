@@ -1,0 +1,36 @@
+<!--pages/sale-men/task-flow.wxml-->
+<view class="task-flow">
+    <view class="task-flow__task-description">
+        <view style="font-size: 36rpx; color: #333; font-weight: bold;">{{task_object.title}}</view>
+        <view>{{task_object.content}}</view>
+    </view>
+
+    <view class="task-flow__block" wx:for="{{task_object.situation}}">
+        <view class="publish-date">{{item.datetime}}</view>
+        <view class="task-flow__description">
+            {{item.remark}}
+        </view>
+        <view class="weui-gallery__img__wrp" wx:for="{{item.attach}}" wx:for-item="imgurl">
+            <image bindtap="previewImage" data-url="{{imgurl}}" style="width: 80px; height: 80px" class="weui-gallery__img weui-article__img"
+                src="{{imgurl}}"
+                mode="aspectFit" />
+        </view>
+
+        <view class="task-flow__location-info" 
+        wx:if="{{item.address}}" 
+        bindtap="openMap"
+        data-name="{{item.address}}"
+        data-long="{{item.longitude}}"
+        data-lat="{{item.latitude}}">
+            <view>
+            {{item.address}}
+            <text class="iconfont icon-daohang"></text>
+            </view>
+        </view>
+    </view>
+
+    <view class="task-flow__write footer-fixed">
+        <view class="opt-btn" bindtap="handleFinishTask">结束任务</view>
+        <view class="opt-btn btn-main" bindtap="goToWrite">添加描述</view>
+    </view>
+</view>

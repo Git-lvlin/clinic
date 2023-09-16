@@ -50,7 +50,6 @@
                 <view class="detail-price">
                   <text wx:if="{{ itemStyle.show.goodsPrice }}" class="goods-price f-30 col-m">￥{{ dataItem.goods_price }}</text>
                   <text wx:if="{{ itemStyle.show.linePrice && dataItem.line_price > 0 }}" class="line-price col-9 f-24">￥{{ dataItem.line_price }}</text>
-                  <text wx:if="{{ dataItem.spec_sku_id && dataItem.spec_sku_id >= 0}}" class="add-card-circular-btn" catchtap="addCard" data-goods_id="{{dataItem.goods_id}}" data-spec_sku_id="{{dataItem.spec_sku_id}}">+</text>
                 </view>
               </view>
             </block>

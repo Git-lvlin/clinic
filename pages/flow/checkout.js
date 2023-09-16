@@ -70,7 +70,17 @@ Page({
     _this.setData({
       options
     });
-    console.log(options);
+
+    let favorite = wx.getStorageSync('favorite_shop'); 
+    // 如果用户上次选择了某家店，每次进来默认都是那家店
+    if(favorite) {
+      _this.setData({selectedShopId: favorite})
+      _this.getOrderData();
+    } else {// 没有选择过，推荐最近的一家
+      _this.getLocation((res) => {
+        _this.getShopList(res.longitude, res.latitude);
+      });
+    }
   },
 
   /**
@@ -78,8 +88,8 @@ Page({
    */
   onShow() {
     let _this = this;
+    _this.getOrderData();
     // 获取当前订单信息
-    !_this.data.notRefresh && _this.getOrderData();
   },
 
   /**
@@ -173,6 +183,47 @@ Page({
     }
   },
 
+  /*获取店铺列表*/
+  getShopList(longitude, latitude) {
+    let _this = this;
+    _this.setData({
+      isLoading: true
+    });
+    App._get('shop/lists', {
+      longitude: longitude || '',
+      latitude: latitude || ''
+    }, (result) => {
+      _this.setData({
+        selectedShopId: result.data.list[0].shop_id,
+      });
+
+      !_this.data.notRefresh && _this.getOrderData();
+    });
+  },
+
+  /**
+   * 获取用户坐标
+   */
+  getLocation(callback) {
+    let _this = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        // console.log(res);
+        callback && callback(res);
+      },
+      fail() {
+        Toptips({
+          duration: 3000,
+          content: '获取定位失败，请点击右下角按钮打开定位权限'
+        });
+        _this.setData({
+          isAuthor: false
+        });
+      },
+    })
+  },
+
   /**
    * 切换配送方式
    */
@@ -211,6 +262,7 @@ Page({
     _this.setData({
       notRefresh: false
     });
+    
     // 跳转到选择自提点
     wx.navigateTo({
       url: '../_select/extract_point/index?selected_id=' + selectedId
@@ -244,7 +296,6 @@ Page({
 
     // 按钮禁用, 防止二次提交
     _this.data.disabled = true;
-
 
     let url = '';
 
@@ -332,10 +383,14 @@ Page({
       onCommitCallback();
       return;
     }
+
     wx.requestSubscribeMessage({
       tmplIds,
-      success(res) {},
-      fail(res) {},
+      success(res) {
+      },
+      fail(err) {
+        console.error(err)
+      },
       complete(res) {
         onCommitCallback();
       },
@@ -387,7 +442,7 @@ Page({
       return false;
     }
     // 验证自提填写的联系方式
-    if (_this.data.curDelivery == DeliveryTypeEnum.EXTRACT.value) {
+    if (_this.data.curDelivery == DeliveryTypeEnum.EXTRACT.value || _this.data.curDelivery === DeliveryTypeEnum.STOREDELIVERY.value) {
       _this.setData({
         linkman: _this.data.linkman.trim(),
         phone: _this.data.phone.trim(),

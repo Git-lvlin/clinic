@@ -1,0 +1,17 @@
+<!--pages/sale-men/write-info.wxml-->
+<view class="write-info">
+  <form action="">
+   <label>
+      <text class="label">描述（必填）</text>
+      <textarea bindblur="handleDescriptionInput"></textarea>
+   </label>
+  
+   <label>
+      <mp-uploader title="图片（必填）" bindselect="handleUploadFile2" files="{{files}}" delete="{{delete}}" max-count="{{multiple}}"></mp-uploader>
+   </label> 
+
+   <label>
+     <button class="weui-btn weui-btn_primary" bindtap="getLocationName">提交</button>
+   </label>
+  </form>
+</view>

@@ -9,10 +9,11 @@
     </navigator>
   </view>
 
+
   <!-- 分类样式：一级分类(大图) 10 -->
   <view class="cate-content" wx:if="{{ templet.category_style == 10 && list.length > 0 }}">
     <view class="cate-wrapper cate_style__10">
-      <scroll-view scroll-y="true" style="height: {{scrollHeight - 10}}px; ">
+      <scroll-view scroll-y="true" style="height: {{scrollHeight}}px; ">
         <view class="cate-item" wx:for="{{list}}" wx:key="this">
           <navigator hover-class="none" url="../category/list?category_id={{item.category_id}}">
             <image mode="widthFix" src="{{item.image.file_path}}"></image>

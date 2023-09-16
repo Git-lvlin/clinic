@@ -1,0 +1,30 @@
+<!--pages/sale-men/index.wxml-->
+<view class="sale-men">
+  <view class="header f-28 col-3">
+    <view bindtap="bindHeaderTap" class="{{dataType==='1'?'active':''}}" data-type="1">
+      <text>全部</text>
+    </view>
+    <view catchtap="bindHeaderTap" class="{{dataType==='2'?'active':''}}" data-type="2">
+      <text>未处理</text>
+    </view>
+    
+    <view bindtap="bindHeaderTap" class="{{dataType==='3'?'active':''}}" data-type="3">
+      <text>已完成</text>
+    </view>
+  </view>
+  <view class="weui-panel">
+    <view class="weui-panel__bd">
+    
+    <view class="weui-media-box weui-media-box_text" bindtap="toHanleTask" wx:for="{{task.data}}" data-taskid="{{item.task_id}}">
+      <h4 class="weui-media-box__title">{{item.title}}</h4>
+      <view class="weui-media-box__desc">{{item.content}}</view>
+      <view class="weui-media-box__info">
+        <!-- <view class="weui-media-box__info__meta">文字来源</view> -->
+        <view class="weui-media-box__info__meta">{{item.create_time}}</view>
+        <!-- <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view> -->
+      </view>
+    </view>
+  </view>
+  </view>
+ 
+</view>

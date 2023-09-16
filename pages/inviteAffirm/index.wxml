@@ -4,6 +4,6 @@
       <!-- <image src="https://shop01-ningboyanxuan.oss-cn-shenzhen.aliyuncs.com/wechat/jzshop_logo.png"></image> -->
   </view>
   <view class="info-btn">
-    <button class="btn-normal" openType="getUserInfo" lang="zh_CN" bindgetuserinfo="getUserInfo">微信一键登录</button>
+    <button class="btn-normal" catchtap="getUserProfile">微信一键登录</button>
   </view>
 </view>

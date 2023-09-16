@@ -9,5 +9,13 @@ module.exports = {
   EXTRACT: {
     name: '上门自提',
     value: 20
+  },
+  STOREDELIVERY: {
+    name: '门店配送',
+    value: 30
+  },
+  WAREHOUSE: {
+    name: '仓库配送',
+    value: 40
   }
 };

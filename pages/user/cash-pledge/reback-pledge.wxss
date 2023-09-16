@@ -1,0 +1,30 @@
+/* pages/user/cash-pledge/reback-pledge.wxss */
+.reback-pledge {
+  background-color: white;
+  min-height: 100vh;
+
+}
+
+.reback__step-list {
+  padding: 20px 60rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.weui-form {
+  margin: 0;
+  padding: 0;
+}
+
+.weui-form__opr-area:last-child {
+  margin: 20rpx;
+}
+
+.weui-form__opr-area {
+  margin: 0;
+}
+
+.weui-select {
+  line-height: 24px;
+  padding-left: 0;
+}
